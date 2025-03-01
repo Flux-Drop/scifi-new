@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import DesktopMenu from "../Menu/desktop-menu";
 import MobileMenu from "../Menu/mobile-menu";
+import { Button } from "@/components/ui/button";
+import GradientButton from "../buttons/GradientButton";
 
 const Header = () => {
   const { isMobile, isTablet } = useUi();
@@ -17,6 +19,7 @@ const Header = () => {
       <div className="flex items-center text-white gap-1 ">
         {isMobile || isTablet ? <MobileMenu /> : <DesktopMenu />}
       </div>
+      <GradientButton>Login</GradientButton>
     </header>
   );
 };

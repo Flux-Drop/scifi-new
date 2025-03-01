@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${layGrotesk.className} ${layGrotesk.variable} antialiased`}
+        className={`${layGrotesk.className} ${layGrotesk.variable} antialiased bg-[url(/images/pattern-2.png)] `}
       >
         <UiProvider>{children}</UiProvider>
       </body>

@@ -8,18 +8,16 @@ import {
 import { LogInIcon, Menu } from "lucide-react";
 import Link from "next/link";
 import { navLinks } from "@/lib/constants";
+import { Button } from "@/components/ui/button";
 
 const MobileMenu = () => {
   return (
     <DropdownMenu>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 ">
         <div className="flex items-center">
-          <Link
-            href="/login"
-            className="text-white font-bold capitalize text-lg"
-          >
-            <LogInIcon size={20} />
-          </Link>
+          <Button className="bg-gradient-to-r from-indigo-700 to-purple-600 text-white shadow-none text-base rounded-3xl px-7 py-3 focus:outline-none cursor-pointer font-semibold">
+            Login
+          </Button>
         </div>
         <DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer focus:outline-none">
           <Menu size={20} />

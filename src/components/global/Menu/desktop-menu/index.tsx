@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { navLinks } from "@/lib/constants";
 import { NavLink } from "@/types/types";
 import { LogInIcon } from "lucide-react";
@@ -8,7 +9,7 @@ import React from "react";
 const DesktopMenu = () => {
   const pathname = usePathname();
   return (
-    <div className="flex items-center gap-6">
+    <div className="flex items-center gap-6 ">
       <div className="flex items-center">
         {navLinks.map((item: NavLink, index: React.Key | null | undefined) => {
           return (
@@ -25,11 +26,6 @@ const DesktopMenu = () => {
             </Link>
           );
         })}
-      </div>
-      <div className="flex items-center">
-        <Link href="/login" className="text-white capitalize text-lg">
-          <LogInIcon />
-        </Link>
       </div>
     </div>
   );

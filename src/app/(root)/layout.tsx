@@ -3,7 +3,7 @@ import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="flex min-h-screen flex-1 flex-col bg-cover bg-top px-5 xs:px-10 md:px-16 bg-[url(/images/pattern-2.png)]">
+    <main className="flex min-h-screen flex-1 flex-col bg-cover bg-top px-5 xs:px-10 md:px-16 bg-[url(/images/waves.png)] ">
       <div className="mx-auto w-full">
         <Header />
       </div>
