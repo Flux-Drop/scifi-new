@@ -1,16 +1,12 @@
 "use client";
 import { useUi } from "@/contexts/UiContext";
-import { LogInIcon, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
-import { navLinks } from "@/lib/constants";
-import { NavLink } from "@/types/types";
+import DesktopMenu from "../Menu/desktop-menu";
 import MobileMenu from "../Menu/mobile-menu";
 
 const Header = () => {
-  const pathname = usePathname();
-  const { isMobile, isTablet, isDesktop, breakpoint } = useUi();
+  const { isMobile, isTablet } = useUi();
   return (
     <header className="my-10 flex justify-between gap-5 items-center ">
       <Link href="/" className="text-white font-bold capitalize text-xl">
@@ -19,36 +15,7 @@ const Header = () => {
         Scifi
       </Link>
       <div className="flex items-center text-white gap-1 ">
-        {isMobile || isTablet ? (
-          <MobileMenu />
-        ) : (
-          <div className="flex items-center gap-6">
-            <div className="flex items-center">
-              {navLinks.map(
-                (item: NavLink, index: React.Key | null | undefined) => {
-                  return (
-                    <Link
-                      key={index}
-                      href={item.path}
-                      className={`ml-6 ${
-                        pathname === item.path
-                          ? "text-purple-400 font-semibold"
-                          : "text-white"
-                      }  capitalize font-medium text-lg`}
-                    >
-                      {item.name}
-                    </Link>
-                  );
-                }
-              )}
-            </div>
-            <div className="flex items-center">
-              <Link href="/login" className="text-white capitalize text-lg">
-                <LogInIcon />
-              </Link>
-            </div>
-          </div>
-        )}
+        {isMobile || isTablet ? <MobileMenu /> : <DesktopMenu />}
       </div>
     </header>
   );
