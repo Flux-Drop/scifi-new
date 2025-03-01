@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import { UiProvider } from "@/contexts/UiContext";
 
 const layGrotesk = localFont({
   src: [
@@ -27,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${layGrotesk.className} ${layGrotesk.variable} antialiased`}
       >
-        {children}
+        <UiProvider>{children}</UiProvider>
       </body>
     </html>
   );
