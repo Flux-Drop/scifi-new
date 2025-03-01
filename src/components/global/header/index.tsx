@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { navLinks } from "@/lib/constants";
 import { NavLink } from "@/types/types";
+import MobileMenu from "../Menu/mobile-menu";
 
 const Header = () => {
   const pathname = usePathname();
@@ -19,20 +20,7 @@ const Header = () => {
       </Link>
       <div className="flex items-center text-white gap-1 ">
         {isMobile || isTablet ? (
-          <div className="flex items-center gap-6">
-            <div className="flex items-center">
-              <Link
-                href="/login"
-                className="text-white font-bold capitalize text-lg"
-              >
-                <LogInIcon size={20} />
-              </Link>
-            </div>
-            <button className="bg-transparent flex items-center gap-1 text-base md:text-lg p-0">
-              <Menu size={20} />
-              <span>Menu</span>
-            </button>
-          </div>
+          <MobileMenu />
         ) : (
           <div className="flex items-center gap-6">
             <div className="flex items-center">
