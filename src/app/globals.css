@@ -68,6 +68,17 @@
   background: transparent;
 }
 
+.outlined-text {
+  color: #9810fa;
+  -webkit-text-fill-color: rgba(
+    183,
+    36,
+    36,
+    0
+  ); /* Will override color (regardless of order) */
+  -webkit-text-stroke: 2px #a95ddf;
+}
+
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
