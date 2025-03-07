@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       className={`flex min-h-screen flex-1 flex-col bg-cover bg-top px-5 xs:px-10 md:px-16 ${
         pathName === "/"
           ? "bg-[url(/images/waves.png)]"
-          : "bg-[url(/images/pattern-2.png)]"
+          : "bg-[url(/images/pattern-2.jpg)]"
       } `}
     >
       <div className="mx-auto w-full">
