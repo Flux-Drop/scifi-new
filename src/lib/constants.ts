@@ -17,4 +17,9 @@ export const navLinks: NavLink[] = [
     name: "Contact",
     path: "/contact",
   },
+  {
+    name: "Sign In",
+    path: "/sign-in",
+    className: "font-semibold border-t w-full border-slate-400",
+  },
 ];

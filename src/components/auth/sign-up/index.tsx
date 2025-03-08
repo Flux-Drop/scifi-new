@@ -6,7 +6,8 @@ import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SignupSchema } from "@/helpers/zod/signup-schema";
-import { signUp } from "@/lib/auth-client";
+// import { signUp } from "@/lib/auth-client";
+import { signUp } from "@/server/users";
 import { useRouter } from "next/navigation";
 import CardWrapper from "@/components/global/card-wrapper";
 import {
@@ -43,34 +44,7 @@ const SignUp = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof SignupSchema>) => {
-    try {
-      await signUp.email(
-        {
-          name: values.name,
-          email: values.email,
-          password: values.password,
-        },
-        {
-          onResponse: () => {
-            setLoading(false);
-          },
-          onRequest: () => {
-            resetState();
-            setLoading(true);
-          },
-          onSuccess: () => {
-            setSuccess("User has been created");
-            router.replace("/");
-          },
-          onError: (ctx) => {
-            setError(ctx.error.message);
-          },
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      setError("Something went wrong");
-    }
+    console.log("Values: ", values);
   };
 
   return (
@@ -82,7 +56,10 @@ const SignUp = () => {
       cardFooterLinkTitle="Sign In"
     >
       <Form {...form}>
-        <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          className="space-y-4"
+          // onSubmit={form.handleSubmit(onSubmit)}
+        >
           <FormField
             control={form.control}
             name="name"
@@ -139,7 +116,12 @@ const SignUp = () => {
           />
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={loading} type="submit" className="w-full">
+          <Button
+            disabled={loading}
+            type="submit"
+            className="w-full"
+            onClick={signUp}
+          >
             Submit
           </Button>
         </form>
