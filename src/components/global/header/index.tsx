@@ -1,13 +1,10 @@
 "use client";
+import { ShinyButton } from "@/components/magicui/shiny-button";
 import { useUi } from "@/contexts/UiContext";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import DesktopMenu from "../Menu/desktop-menu";
 import MobileMenu from "../Menu/mobile-menu";
-import { Button } from "@/components/ui/button";
-import GradientButton from "../buttons/GradientButton";
-import { ShinyButton } from "@/components/magicui/shiny-button";
-import { signIn } from "@/lib/auth-client";
+import { signIn } from "@/server/users";
 
 const Header = () => {
   const { isMobile, isTablet } = useUi();
@@ -23,7 +20,7 @@ const Header = () => {
       </div>
       <Link href="/sign-in" className="hidden lg:block">
         <ShinyButton className="bg-gradient-to-r from-indigo-700 to-purple-600 rounded-full font-semibold">
-          <span className="text-white" onClick={() => signIn}>
+          <span className="text-white" onClick={signIn}>
             Login
           </span>
         </ShinyButton>
