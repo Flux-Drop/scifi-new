@@ -6,13 +6,7 @@ import React from "react";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
   return (
-    <main
-      className={`flex min-h-screen flex-1 flex-col bg-cover bg-top px-5 xs:px-10 md:px-16 ${
-        pathName === "/"
-          ? "bg-[url(/images/waves.png)]"
-          : "bg-[url(/images/pattern-2.jpg)]"
-      } `}
-    >
+    <main className={`flex min-h-screen flex-1 flex-col `}>
       <div className="mx-auto w-full">
         <Header />
       </div>

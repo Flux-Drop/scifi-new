@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const DesktopMenu = () => {
   const pathname = usePathname();
   const filteredLinks = useMemo(
-    () => navLinks.filter((link) => link.name !== "Sign In"),
+    () => navLinks.filter((link) => link.name !== "Login"),
     []
   );
   return (
