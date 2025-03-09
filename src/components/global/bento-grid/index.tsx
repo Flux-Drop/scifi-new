@@ -1,12 +1,14 @@
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { Button } from "@/components/ui/button";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
 const BentoGrid = () => {
   return (
     <div className="py-8 sm:py-12">
-      <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+      <div className="px-5 xs:px-10 md:px-16">
         <div className="mt-0 grid gap-2 sm:mt-0 lg:grid-cols-3 lg:grid-rows-2">
           <div className="relative lg:row-span-2">
             <div className="absolute inset-px rounded-3xl bg-gradient-to-b from-#E6DDFE to-#E6DDFE opacity-5 lg:rounded-l-[2rem]"></div>
@@ -98,9 +100,14 @@ const BentoGrid = () => {
                   Get to know more about our services and how we can help you
                   with your internet needs.
                 </p>
-                <ShinyButton className="bg-[url('/assets/cta.png')] rounded-full font-semibold w-1/2 bg-no-repeat bg-cover">
-                  <span className="text-black capitalize">Explore</span>
-                </ShinyButton>
+                <HoverBorderGradient
+                  containerClassName="rounded-full"
+                  as="button"
+                  className="bg-black text-white flex items-center space-x-2"
+                >
+                  <span>Explore</span>
+                  <ArrowRight size={16} />
+                </HoverBorderGradient>
               </div>
               <div className="h-full w-full">
                 <video

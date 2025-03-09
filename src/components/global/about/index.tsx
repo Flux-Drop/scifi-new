@@ -9,7 +9,7 @@ const About = () => {
         <span className="bg-gradient-to-b from-neutral-200 to-neutral-500 text-black text-xs me-2 px-2.5 py-0.5 rounded-full font-bold">
           Scify
         </span>
-        <Text>Our Services</Text>
+        <Text>About Us</Text>
         <p className="text-lg text-start lg:text-center text-slate-200">
           Your internet, simplified and secured.
         </p>

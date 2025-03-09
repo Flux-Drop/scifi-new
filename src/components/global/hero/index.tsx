@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import Text from "@/components/ui/text";
 import Image from "next/image";
 import React from "react";
+import GradientButton from "../buttons/GradientButton";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const Hero = () => {
   return (
@@ -15,8 +17,12 @@ const Hero = () => {
           We help you to connect with reliable internet. Where others can’t!
         </p>
         <div className="flex gap-2">
-          <Button>Get Started</Button>
-          <Button>View Plans</Button>
+          <ShinyButton className="bg-[url('/assets/cta.png')] rounded-full font-semibold bg-cover">
+            <span className="text-black capitalize">Get Started</span>
+          </ShinyButton>
+          <ShinyButton className="bg-black rounded-full font-semibold border">
+            <span className="text-white capitalize">View Plans</span>
+          </ShinyButton>
         </div>
         <Image
           src="/assets/phones.png"
