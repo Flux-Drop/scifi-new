@@ -72,7 +72,7 @@ const Services = () => {
 
   return (
     <div className="app" ref={container}>
-      <section className="flex flex-col text-slate-200 gap-4 justify-center items-start lg:items-center px-5 xs:px-10 md:px-16">
+      <section className="flex flex-col text-slate-200 gap-4 justify-center items-start lg:items-center ">
         <Text>Our Services</Text>
         <p className="text-lg text-start lg:text-center text-slate-200">
           Offering best services to our customers with the latest technology.
@@ -93,10 +93,7 @@ export default Services;
 
 const ServiceCard = ({ title, copy, index }: ServiceCardProps) => {
   return (
-    <div
-      className="card px-5 xs:px-10 md:px-16 rounded-3xl"
-      id={`card-${index + 1}`}
-    >
+    <div className="card  rounded-3xl" id={`card-${index + 1}`}>
       <div
         className={`card-inner shadow-[inset_0px_18px_45px_-25px_#7F7F90] rounded-2xl ${
           index % 2 === 0

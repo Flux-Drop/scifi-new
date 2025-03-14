@@ -8,7 +8,7 @@ import React from "react";
 const BentoGrid = () => {
   return (
     <div className="py-8 sm:py-12">
-      <div className="px-5 xs:px-10 md:px-16">
+      <div className="w-full">
         <div className="mt-0 grid gap-2 sm:mt-0 lg:grid-cols-3 lg:grid-rows-2">
           <div className="relative lg:row-span-2">
             <div className="absolute inset-px rounded-3xl bg-gradient-to-b from-#E6DDFE to-#E6DDFE opacity-5 lg:rounded-l-[2rem]"></div>

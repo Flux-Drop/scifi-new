@@ -50,7 +50,7 @@ const AboutCards = () => {
     },
   ];
   return (
-    <section className="px-5 xs:px-10 md:px-16 space-y-6 bg-[#030307] py-8 md:py-12 lg:py-20">
+    <section className="w-full">
       <div className="flex flex-col text-slate-200 gap-4 justify-center items-start lg:items-center px-5 xs:px-10 md:px-16">
         <Text>Features</Text>
 

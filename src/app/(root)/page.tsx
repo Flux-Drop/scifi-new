@@ -5,14 +5,19 @@ import Hero from "@/components/global/hero";
 import About from "@/components/global/about";
 import Services from "@/components/global/services/page";
 import HoverCards from "@/components/global/hover-cards";
+import Testimonails from "@/components/global/testimonials";
+import Wrapper from "@/components/global/wrapper";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <About />
-      <Services />
-      <HoverCards />
+      <Wrapper>
+        <About />
+        <Services />
+        <HoverCards />
+        <Testimonails />
+      </Wrapper>
     </>
   );
 }
