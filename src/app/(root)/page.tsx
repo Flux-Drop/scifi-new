@@ -7,6 +7,7 @@ import Services from "@/components/global/services/page";
 import HoverCards from "@/components/global/hover-cards";
 import Testimonails from "@/components/global/testimonials";
 import Wrapper from "@/components/global/wrapper";
+import Banner from "@/components/ui/banner";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Wrapper>
         <About />
         <Services />
+        {/* <Banner /> */}
         <HoverCards />
         <Testimonails />
       </Wrapper>

@@ -50,18 +50,17 @@ const AboutCards = () => {
     },
   ];
   return (
-    <section className="w-full">
+    <section className="w-full mt-24 lg:mt-0">
       <div className="flex flex-col text-slate-200 gap-4 justify-center items-start lg:items-center px-5 xs:px-10 md:px-16">
-        <Text>Features</Text>
+        <Text>Why Scify ?</Text>
 
-        <p className="text-lg text-start lg:text-center text-white w-full lg:w-1/2">
-          The product can personalize user experiences by understanding
-          individual preferences and tailoring recommendations or content based
-          on user behavior and historical data.
+        <p className="text-lg text-start lg:text-center text-white w-full">
+          Personalize experiences with tailored recommendations based on user
+          behavior.
         </p>
       </div>
       {/* Grid */}
-      <div className="grid justify-center gap-4 sm:grid-cols-2 md:max-w-screen md:grid-cols-3 ">
+      <div className="grid justify-center gap-4 sm:grid-cols-2 md:max-w-screen md:grid-cols-3 mt-10">
         {whyUsCards.map((card, index) => (
           <div
             className="relative overflow-hidden rounded-lg border bg-gray-200 select-none hover:shadow hover:shadow-teal-200 p-2"
