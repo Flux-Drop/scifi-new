@@ -12,7 +12,7 @@ const Text = ({
     <h1
       className={cn(
         className,
-        "relative z-10 text-5xl md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-start lg:text-center font-sans font-bold"
+        "relative z-10 text-5xl md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 text-start lg:text-center font-bold"
       )}
     >
       {children}

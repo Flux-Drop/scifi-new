@@ -72,7 +72,7 @@ const Services = () => {
 
   return (
     <div className="app" ref={container}>
-      <section className=" flex justify-center items-center flex-col gap-2 mb-4 lg:mb-6">
+      <section className="flex flex-col text-slate-200 gap-4 justify-center items-start lg:items-center px-5 xs:px-10 md:px-16">
         <Text>Our Services</Text>
         <p className="text-lg text-start lg:text-center text-slate-200">
           Offering best services to our customers with the latest technology.

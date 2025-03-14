@@ -51,11 +51,10 @@ const AboutCards = () => {
   ];
   return (
     <section className="px-5 xs:px-10 md:px-16 space-y-6 bg-[#030307] py-8 md:py-12 lg:py-20">
-      {/* Title */}
-      <div className="flex flex-col items-start lg:items-center">
+      <div className="flex flex-col text-slate-200 gap-4 justify-center items-start lg:items-center px-5 xs:px-10 md:px-16">
         <Text>Features</Text>
 
-        <p className="text-lg text-start lg:text-center text-white w-1/2">
+        <p className="text-lg text-start lg:text-center text-white w-full lg:w-1/2">
           The product can personalize user experiences by understanding
           individual preferences and tailoring recommendations or content based
           on user behavior and historical data.
