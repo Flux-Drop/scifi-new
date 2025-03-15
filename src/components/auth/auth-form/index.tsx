@@ -1,4 +1,6 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -7,7 +9,9 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { FIELD_PLACEHOLDERS, FIELD_TYPES } from "@/lib/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Path } from "better-auth";
 import Link from "next/link";
 import React from "react";
 import {
@@ -43,30 +47,38 @@ const AuthForm = <T extends FieldValues>({
     console.log(form.getValues());
   };
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-semibold text-white">
-        {isSignIn ? "Welcome Back To Scify" : "Create An Account"}
-      </h1>
-      <p className="text-white">
-        {isSignIn
-          ? "Access the vast collection of resources, and stay updated."
-          : "Please complete all fields."}
-      </p>
+    <div className="flex flex-col gap-4 h-full">
+      <div className="flex flex-col gap-2">
+        <h1 className="text-5xl font-semibold text-white">
+          {isSignIn ? "Welcome Back" : "Create An Account"}
+        </h1>
+        <p className="text-white">
+          {isSignIn
+            ? "Access the vast collection of resources, and stay updated."
+            : "Please complete all fields."}
+        </p>
+      </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
           className="space-y-6 w-full"
         >
-          <div className="grid grid-cols-2 gap-x-4">
+          {Object.keys(defaultValues).map((field) => (
             <FormField
+              key={field}
               control={form.control}
-              name="firstName"
-              label="First Name"
+              name={field as Path<T>}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="First Name"
+                      required
+                      type={FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]}
+                      placeholder={
+                        FIELD_PLACEHOLDERS[
+                          field.name as keyof typeof FIELD_PLACEHOLDERS
+                        ]
+                      }
                       {...field}
                       className="w-full bg-[#3C364B] h-10 border-0 text-white placeholder:text-[#777185] focus:ring-1 focus:ring-[#C5BAE3] focus:border-[#C5BAE3]"
                     />
@@ -74,56 +86,14 @@ const AuthForm = <T extends FieldValues>({
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="lastName"
-              label="Last Name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      placeholder="Last Name"
-                      {...field}
-                      className="max-w-full bg-[#3C364B] h-10 border-0 text-white placeholder:text-[#777185] focus:ring-1 focus:ring-[#C5BAE3] focus:border-[#C5BAE3]"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </div>
-          <FormField
-            control={form.control}
-            name="email"
-            label="Email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    placeholder="Email"
-                    {...field}
-                    className="max-w-full bg-[#3C364B] h-10 border-0 text-white placeholder:text-[#777185] focus:ring-1 focus:ring-[#C5BAE3] focus:border-[#C5BAE3]"
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            label="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Password"
-                    {...field}
-                    className="max-w-full bg-[#3C364B] h-10 border-0 text-white placeholder:text-[#777185] focus:ring-1 focus:ring-[#C5BAE3] focus:border-[#C5BAE3]"
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+          ))}
+
+          <Button
+            type="submit"
+            className="w-full h-12 bg-[#6D54B5] text-white hover:bg-[#7D65C0]"
+          >
+            {isSignIn ? "Sign In" : "Create Account"}
+          </Button>
         </form>
       </Form>
       <p className="text-center text-base font-medium">
