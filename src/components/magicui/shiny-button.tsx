@@ -30,12 +30,13 @@ interface ShinyButtonProps
     MotionProps {
   children: React.ReactNode;
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export const ShinyButton = React.forwardRef<
   HTMLButtonElement,
   ShinyButtonProps
->(({ children, className, ...props }, ref) => {
+>(({ children, className, type, ...props }, ref) => {
   return (
     <motion.button
       ref={ref}
@@ -45,6 +46,7 @@ export const ShinyButton = React.forwardRef<
       )}
       {...animationProps}
       {...props}
+      type={type}
     >
       <span
         className="relative block size-full text-sm uppercase tracking-wide text-[rgb(0,0,0,65%)] dark:font-light dark:text-[rgb(255,255,255,90%)]"

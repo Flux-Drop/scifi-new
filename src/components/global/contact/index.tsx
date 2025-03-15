@@ -1,9 +1,5 @@
 "use client";
-import ContactSchema from "@/helpers/zod/contact-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,10 +8,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import FormError from "../form-error";
-import FormSuccess from "../form-success";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ContactSchema from "@/helpers/zod/contact-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const Contact = () => {
   const form = useForm<z.infer<typeof ContactSchema>>({
@@ -35,20 +33,22 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex w-full h-full">
+    <div className="flex flex-col-reverse lg:flex-row w-full h-full gap-4">
       {/* Left Side Form */}
-      <div className="flex flex-col flex-1 bg-white p-10">
+      <div className="flex flex-col flex-1 bg-white p-10 rounded-[20px]">
         {/* Heading */}
-        <div className="flex flex-col lg:flex-row items-start justify-between px-4 py-6 bg-white">
-          <h1>We{"'"}ll get your business set up in less than 24 hours.</h1>
-          <p>
+        <div className="flex flex-col items-start justify-between py-6 gap-2">
+          <h1 className="text-xl lg:text-3xl font-semibold">
+            We{"'"}ll get your business set up in less than 24 hours.
+          </h1>
+          <p className="text-sm">
             Sounds impossible, right? Wait until you see how easy it is to run
             your business on Scify
           </p>
         </div>
 
         {/* Form */}
-        <div className="bg-white">
+        <div className="">
           <Form {...form}>
             <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
@@ -122,7 +122,11 @@ const Contact = () => {
                   </FormItem>
                 )}
               />
-              <Button disabled={loading} type="submit" className="w-full">
+              <Button
+                disabled={loading}
+                type="submit"
+                className="w-full cursor-pointer"
+              >
                 Send Query
               </Button>
             </form>
@@ -130,16 +134,19 @@ const Contact = () => {
         </div>
 
         <p className="text-sm text-center text-black mt-4">
-          Prefer Email? hello@scify.com
+          Prefer Email?{" "}
+          <a href="mailto:hello@scify.com" className="underline font-medium">
+            hello@scify.com
+          </a>
         </p>
       </div>
 
       {/* Right Side Image */}
       <div
-        className="flex-1 bg-cover bg-center bg-no-repeat min-h-full p-10 flex flex-col justify-end text-white "
+        className="flex-1/4 bg-cover bg-center bg-no-repeat min-h-full p-10 flex flex-col justify-end text-white rounded-[20px]"
         style={{ backgroundImage: "url('/assets/contact.png')" }}
       >
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-2xl lg:text-3xl font-semibold lg:font-bold">
           Empowering homes with seamless connectivity and unparalleled security.
         </h1>
         <p className="mt-2">Vikram Kumar</p>

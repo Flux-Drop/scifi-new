@@ -1,8 +1,19 @@
-import SignIn from "@/components/auth/sign-in";
-import React from "react";
+"use client";
+import AuthForm from "@/components/auth/auth-form";
+import signInSchema from "@/helpers/zod/login-schema";
 
-const SignInPage = () => {
-  return <SignIn />;
+const Page = () => {
+  return (
+    <AuthForm
+      type="SIGN_IN"
+      schema={signInSchema}
+      defaultValues={{
+        email: "",
+        password: "",
+      }}
+      onSubmit={() => {}}
+    />
+  );
 };
 
-export default SignInPage;
+export default Page;

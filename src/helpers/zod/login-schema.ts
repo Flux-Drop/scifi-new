@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const LoginSchema = z.object({
+const signInSchema = z.object({
   email: z
     .string()
     .email({ message: "Invalid email" })
@@ -11,4 +11,4 @@ const LoginSchema = z.object({
     .max(20, { message: "Password must be at most 20 characters long" }),
 });
 
-export default LoginSchema;
+export default signInSchema;
