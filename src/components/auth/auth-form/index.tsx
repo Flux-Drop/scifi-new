@@ -41,10 +41,11 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handleSubmit = () => {
-    // onSubmit(form.getValues());
-    console.log("working");
-    console.log(form.getValues());
+  const handleSubmit = async (data) => {
+    const result = await onSubmit(data);
+    if (!result.success) {
+      // toast
+    }
   };
   return (
     <div className="flex flex-col gap-4 h-full">

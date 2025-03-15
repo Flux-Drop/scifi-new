@@ -1,4 +1,5 @@
 "use client";
+import { signInWithCredentials } from "@/actions/auth";
 import AuthForm from "@/components/auth/auth-form";
 import signInSchema from "@/helpers/zod/login-schema";
 
@@ -11,7 +12,7 @@ const Page = () => {
         email: "",
         password: "",
       }}
-      onSubmit={() => {}}
+      onSubmit={signInWithCredentials}
     />
   );
 };

@@ -10,3 +10,11 @@ export type Testimonial = {
   designation: string;
   src: string;
 };
+
+interface AuthCredentials {
+  email: string;
+  password: string;
+  password: string;
+  firstName: string;
+  lastName?: string;
+}

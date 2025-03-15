@@ -1,4 +1,5 @@
 "use client";
+import { signUp } from "@/actions/auth";
 import AuthForm from "@/components/auth/auth-form";
 import { SignupSchema } from "@/helpers/zod/signup-schema";
 import React from "react";
@@ -14,7 +15,7 @@ const Page = () => {
         email: "",
         password: "",
       }}
-      onSubmit={() => {}}
+      onSubmit={signUp}
     />
   );
 };
