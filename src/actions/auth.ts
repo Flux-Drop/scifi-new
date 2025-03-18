@@ -3,7 +3,7 @@
 import prisma from "@/db";
 import { AuthCredentials } from "@/types/types";
 import { hash } from "bcryptjs";
-import { signIn } from "../../auth";
+import { signIn, signOut } from "../../auth";
 
 export const signInWithCredentials = async (
   params: Pick<AuthCredentials, "email" | "password">
@@ -29,11 +29,14 @@ export const signInWithCredentials = async (
 
 export const signUp = async (params: AuthCredentials) => {
   const { firstName, lastName, email, password } = params;
+  console.log(params, "params");
   const existingUser = await prisma.user.findUnique({
     where: {
       email,
     },
   });
+
+  console.log(existingUser, "existingUser");
 
   if (existingUser) {
     return { success: false, message: "User already exists" };
@@ -58,4 +61,9 @@ export const signUp = async (params: AuthCredentials) => {
     console.log(error, "Sign up error");
     return { success: false, message: "Sign up failed" };
   }
+};
+
+export const signOutUser = async () => {
+  await signOut();
+  return { success: true, message: "Sign out successful" };
 };

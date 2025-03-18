@@ -12,14 +12,18 @@ import { Input } from "@/components/ui/input";
 import { FIELD_PLACEHOLDERS, FIELD_TYPES } from "@/lib/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Path } from "better-auth";
+import { X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import {
   DefaultValues,
   FieldValues,
+  SubmitHandler,
   UseFormReturn,
   useForm,
 } from "react-hook-form";
+import { toast } from "sonner";
 import { ZodType } from "zod";
 
 interface AuthFormProps<T extends FieldValues> {
@@ -35,16 +39,19 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: AuthFormProps<T>) => {
+  const router = useRouter();
   const isSignIn = type === "SIGN_IN";
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
     defaultValues: defaultValues as DefaultValues<T>,
   });
-
-  const handleSubmit = async (data) => {
+  const handleSubmit: SubmitHandler<T> = async (data) => {
     const result = await onSubmit(data);
-    if (!result.success) {
-      // toast
+    if (result.success) {
+      toast.success(isSignIn ? "Signed in successfully" : "Account created");
+      router.push("/");
+    } else {
+      toast.error(isSignIn ? "Invalid credentials" : "Account creation failed");
     }
   };
   return (
@@ -88,6 +95,19 @@ const AuthForm = <T extends FieldValues>({
               )}
             />
           ))}
+
+          <div className="flex items-center space-x-2">
+            <Checkbox id="terms" className="cursor-pointer" />
+            <label
+              htmlFor="terms"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              I agree to the{" "}
+              <Link href="/terms" className="text-[#C5BAE3] underline">
+                Terms & Conditions
+              </Link>
+            </label>
+          </div>
 
           <Button
             type="submit"

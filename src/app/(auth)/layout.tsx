@@ -2,8 +2,14 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { ReactNode } from "react";
+import { auth } from "../../../auth";
+import { redirect } from "next/navigation";
 
-const layout = ({ children }: { children: ReactNode }) => {
+const layout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+  if (session) {
+    redirect("/");
+  }
   return (
     <main className="auth-container ">
       <section className="auth-illustration p-4 rounded-2xl">
@@ -12,7 +18,7 @@ const layout = ({ children }: { children: ReactNode }) => {
           alt="Auth Illustration"
           height={1000}
           width={1000}
-          className="size-full object-cover rounded-lg shadow-2xl shadow-[#6D54B5]/30"
+          className="size-full object-cover rounded-lg"
         />
         <div className="flex flex-col justify-between items-center">
           <div className="w-[95%] justify-between  items-center flex px-4 absolute top-10 left-5">

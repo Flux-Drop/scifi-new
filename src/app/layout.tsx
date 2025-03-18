@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { UiProvider } from "@/contexts/UiContext";
+import { Toaster } from "sonner";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "../../auth";
 
 const layGrotesk = localFont({
   src: [
@@ -18,18 +21,22 @@ export const metadata: Metadata = {
   description: "Best ISP in India",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html lang="en">
-      <body
-        className={`${layGrotesk.className} ${layGrotesk.variable} antialiased bg-[#000]`}
-      >
-        <UiProvider>{children}</UiProvider>
-      </body>
+      <SessionProvider session={session}>
+        <body
+          className={`${layGrotesk.className} ${layGrotesk.variable} antialiased bg-[#000]`}
+        >
+          <UiProvider>{children}</UiProvider>
+          <Toaster closeButton expand={false} richColors position="top-right" />
+        </body>
+      </SessionProvider>
     </html>
   );
 }
