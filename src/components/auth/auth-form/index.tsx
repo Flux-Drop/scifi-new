@@ -75,7 +75,7 @@ const AuthForm = <T extends FieldValues>({
             <FormField
               key={field}
               control={form.control}
-              name={field as Path<T>}
+              name={field as any}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>

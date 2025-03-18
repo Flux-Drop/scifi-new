@@ -81,3 +81,26 @@ export const FIELD_PLACEHOLDERS = {
   email: "Email",
   password: "Password",
 };
+
+export const adminSidebarLinks = [
+  {
+    img: "/icons/admin/home.svg",
+    route: "/admin",
+    text: "Home",
+  },
+  {
+    img: "/icons/admin/users.svg",
+    route: "/admin/users",
+    text: "All Users",
+  },
+  {
+    img: "/icons/admin/book.svg",
+    route: "/admin/plans",
+    text: "All Plans",
+  },
+  {
+    img: "/icons/admin/bookmark.svg",
+    route: "/admin/products",
+    text: "All Products",
+  },
+];
