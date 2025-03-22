@@ -5,6 +5,7 @@ import { UiProvider } from "@/contexts/UiContext";
 import { Toaster } from "sonner";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "../../auth";
+import { UserDataProvider } from "@/contexts/UserDataContext";
 
 const layGrotesk = localFont({
   src: [
@@ -33,8 +34,17 @@ export default async function RootLayout({
         <body
           className={`${layGrotesk.className} ${layGrotesk.variable} antialiased bg-[#000]`}
         >
-          <UiProvider>{children}</UiProvider>
-          <Toaster closeButton expand={false} richColors position="top-right" />
+          <UserDataProvider>
+            <UiProvider>
+              {children}
+              <Toaster
+                closeButton
+                expand={false}
+                richColors
+                position="top-right"
+              />
+            </UiProvider>
+          </UserDataProvider>
         </body>
       </SessionProvider>
     </html>

@@ -2,6 +2,7 @@ import Header from "@/components/global/header";
 import { redirect } from "next/navigation";
 import React from "react";
 import { auth } from "../../../auth";
+import { UserDataProvider } from "@/contexts/UserDataContext";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();

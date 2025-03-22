@@ -14,7 +14,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Trash2 } from "lucide-react";
 import { ReactNode } from "react";
 
-export type User = {
+export type Plans = {
   firstName: string;
   lastName: string | null;
   email: string;
@@ -24,7 +24,7 @@ export type User = {
 
 type Role = "ADMIN" | "USER";
 
-export const columns: ColumnDef<User>[] = [
+export const columns: ColumnDef<Plans>[] = [
   {
     accessorKey: "title",
     header: () => <div className="text-left">Name</div>,

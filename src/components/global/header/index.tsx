@@ -21,8 +21,12 @@ import { signOut } from "../../../../auth";
 import { signOutUser } from "@/actions/auth";
 import { toast } from "sonner";
 import Image from "next/image";
+import { useUser } from "@/contexts/UserDataContext";
+
 const Header = ({ session }: { session: Session }) => {
   const { isMobile, isTablet } = useUi();
+  const user = useUser();
+
   const handleSignOut = () => {
     signOutUser();
     toast.success("Sign out successful");
@@ -68,13 +72,22 @@ const Header = ({ session }: { session: Session }) => {
             </div>
 
             <DialogFooter>
-              <Button
-                variant={"destructive"}
-                className="w-full cursor-pointer"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </Button>
+              <div className="flex flex-col items-center w-full gap-4">
+                {user?.role === "ADMIN" && (
+                  <Link href="/admin" className="w-full">
+                    <Button className="w-full cursor-pointer bg-[#6D54B5] text-white hover:bg-[#6D54B5]/70">
+                      Admin Dashboard
+                    </Button>
+                  </Link>
+                )}
+                <Button
+                  variant={"destructive"}
+                  className="w-full cursor-pointer"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </Button>
+              </div>
             </DialogFooter>
           </DialogContent>
         </Dialog>

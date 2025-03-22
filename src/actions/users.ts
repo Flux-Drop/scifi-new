@@ -35,3 +35,29 @@ export const getUsers = async () => {
     };
   }
 };
+
+export const getCurrentUser = async (email: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      return {
+        success: false,
+        message: "User not found",
+      };
+    }
+    return {
+      success: true,
+      data: user,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      message: "An error occurred while fetching the user",
+    };
+  }
+};
