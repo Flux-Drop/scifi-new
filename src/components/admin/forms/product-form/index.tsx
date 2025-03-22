@@ -1,4 +1,5 @@
 "use client";
+import { createProduct } from "@/actions/product";
 import FileUpload from "@/components/global/file-upload";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,30 +15,41 @@ import { Textarea } from "@/components/ui/textarea";
 import { productSchema } from "@/helpers/zod/admin/product-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Product } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 interface ProductFormProps extends Partial<Product> {
   type?: "create" | "update";
 }
 
-const ProductForm = <T extends FieldValues>({
-  type,
-  ...product
-}: ProductFormProps) => {
+const ProductForm = ({ type, ...product }: ProductFormProps) => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof productSchema>>({
     resolver: zodResolver(productSchema),
     defaultValues: {
       title: "",
       description: "",
-      price: 0,
+      price: 1,
       image: "",
       stock: 1,
     },
   });
 
-  const onSubmit = (values: z.infer<typeof productSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof productSchema>) => {
+    console.log("FORM VALUES: ", values);
+    await createProduct(values)
+      .then((res) => {
+        if (res.success) {
+          toast.success("Product created successfully");
+          router.push("/admin/products");
+        }
+      })
+      .catch((error: any) => {
+        toast.error("An error occurred while creating the Product");
+        console.log(error);
+      });
   };
 
   return (
@@ -99,7 +111,7 @@ const ProductForm = <T extends FieldValues>({
                   required
                   {...field}
                   placeholder="Product Price"
-                  className="min-h-14 border border-gray-100 bg-white p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500 "
+                  className="min-h-14 border border-gray-100 bg-white p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
                 />
               </FormControl>
               <FormMessage />
@@ -145,6 +157,7 @@ const ProductForm = <T extends FieldValues>({
                   placeholder="Upload Image"
                   folder="ids"
                   type="image"
+                  value={field.value}
                 />
               </FormControl>
               <FormMessage />

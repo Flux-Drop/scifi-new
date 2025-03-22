@@ -13,6 +13,7 @@ interface FileUploadProps {
   placeholder: string;
   folder: string;
   onFileChange: (filePath: string) => void;
+  value?: string;
 }
 
 const FileUpload: React.FC<FileUploadProps> = ({
@@ -21,6 +22,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   onFileChange,
   placeholder,
   type,
+  value,
 }) => {
   const {
     env: {
@@ -31,14 +33,10 @@ const FileUpload: React.FC<FileUploadProps> = ({
   } = config;
 
   const ikUploadRef = useRef(null);
-  const [file, setFile] = useState<{ filePath: string } | null>(null);
+  const [file, setFile] = useState<{ filePath: string | null }>({
+    filePath: value ?? null,
+  });
   const [progress, setProgress] = useState<number>(0);
-
-  const styles = {
-    button: "bg-[#6D54B5] text-white text-sm font-medium py-2 px-4 rounded-md",
-    placeholder: "text-xs font-normal text-slate-500",
-    text: "text-black",
-  };
 
   const authenticator = async () => {
     try {
@@ -69,7 +67,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
   const onSuccess = (res: any) => {
     setFile(res);
-    onFileChange(res.filePath);
+    onFileChange(res.url);
     toast.success(`${type} uploaded successfully`);
   };
 
@@ -92,6 +90,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
         ref={ikUploadRef}
         className="hidden"
         onError={onError}
+        validateFile={onValidate}
         onSuccess={onSuccess}
         fileName="test-upload.png"
         onUploadStart={() => setProgress(0)}
@@ -103,7 +102,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
         accept={accept}
       />
 
-      {progress > 0 && (
+      {progress > 0 && progress < 100 && (
         <div className="w-full rounded-full bg-green-200 my-2">
           <div
             className="rounded-full bg-green-800 p-2 text-center text-[8px] font-bold leading-none text-white"
@@ -130,27 +129,33 @@ const FileUpload: React.FC<FileUploadProps> = ({
             alt="upload"
             width={20}
             height={20}
-            className={`object-contain  ${file ? "hidden" : ""}`}
+            className={`object-contain  ${file.filePath ? "hidden" : ""}`}
           />
-          <p className={`text-base text-gray-700  ${file ? "hidden" : ""}`}>
+          <p
+            className={`text-base text-gray-700  ${
+              file.filePath ? "hidden" : ""
+            }`}
+          >
             Upload an Image
           </p>
         </div>
-        {file && <p className="mt-1 text-center text-xs">{file.filePath}</p>}
-        {file && (
+        {file.filePath && (
+          <p className="mt-1 text-center text-xs">{file.filePath}</p>
+        )}
+        {file.filePath && (
           <IKImage
-            alt={file.filePath}
-            path={file.filePath}
+            alt={file.filePath!}
+            path={file.filePath!}
             width={500}
             height={500}
           />
         )}
       </button>
-      {file && (
+      {file.filePath && (
         <Button
           variant={"destructive"}
           onClick={() => {
-            setFile(null);
+            setFile({ filePath: null });
             onFileChange("");
           }}
           className="w-full mt-2 text-white"

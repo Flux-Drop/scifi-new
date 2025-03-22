@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -25,17 +19,18 @@ model User {
 }
 
 model Product {
-  id        String   @id @default(uuid())
-  name      String
-  price     Float
-  image     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  stock     Int
+  id          String   @id @default(cuid())
+  title       String
+  price       Int
+  image       String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  stock       Int
 }
 
 model Plan {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   name      String
   speed     String
   price     Float
@@ -46,7 +41,7 @@ model Plan {
 }
 
 model Order {
-  id         String      @id @default(uuid())
+  id         String      @id @default(cuid())
   userId     String
   products   Json
   totalPrice Float

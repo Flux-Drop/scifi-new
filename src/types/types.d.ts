@@ -18,3 +18,11 @@ interface AuthCredentials {
   firstName: string;
   lastName?: string;
 }
+
+interface ProductParams {
+  title: string;
+  stock: number;
+  description: string;
+  price: number;
+  image: string;
+}
