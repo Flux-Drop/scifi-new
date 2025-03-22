@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/db";
+import { Role } from "@prisma/client";
 
 export const getUsers = async () => {
   try {
@@ -58,6 +59,49 @@ export const getCurrentUser = async (email: string) => {
     return {
       success: false,
       message: "An error occurred while fetching the user",
+    };
+  }
+};
+
+export const updateUserRole = async (email: string, role: Role) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      return {
+        success: false,
+        message: "User not found",
+      };
+    }
+    const updatedUserRole = await prisma.user.update({
+      where: {
+        email,
+      },
+      data: {
+        role,
+      },
+      select: {
+        role: true,
+      },
+    });
+    if (!updatedUserRole) {
+      return {
+        success: false,
+        message: "An error occurred while updating the user role",
+      };
+    }
+    return {
+      success: true,
+      data: updatedUserRole,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      message: "An error occurred while updating the user role",
     };
   }
 };

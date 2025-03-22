@@ -11,10 +11,12 @@ import React from "react";
 const Sidebar = ({ session }: { session: Session }) => {
   const pathname = usePathname();
   return (
-    <div className="sticky left-0 top-0 flex h-dvh flex-col justify-between bg-white px-5 pb-5 pt-10">
+    <div className="sticky left-0 top-0 flex h-screen flex-col justify-between bg-white px-5 pb-5 pt-10">
       <div>
         <div className="flex flex-row items-center gap-2 border-b border-dashed border-[#6D54B5]/20 pb-10 max-md:justify-center">
-          <Image src="/logo.png" width={37} height={37} alt="logo" />
+          {/* WIP: ADD LOGO */}
+          {/* <Image src="/logo.png" width={37} height={37} alt="logo" /> */}
+          <p className="text-[#6D54B5] font-bold text-xl">Scifi</p>
         </div>
         <div className="mt-10 flex flex-col gap-5">
           {adminSidebarLinks.map((link, index) => {

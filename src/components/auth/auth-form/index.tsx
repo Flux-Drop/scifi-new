@@ -12,10 +12,10 @@ import { Input } from "@/components/ui/input";
 import { FIELD_PLACEHOLDERS, FIELD_TYPES } from "@/lib/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Path } from "better-auth";
-import { X } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import {
   DefaultValues,
   FieldValues,
@@ -39,6 +39,7 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: AuthFormProps<T>) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const isSignIn = type === "SIGN_IN";
   const form: UseFormReturn<T> = useForm({
@@ -46,12 +47,15 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
   const handleSubmit: SubmitHandler<T> = async (data) => {
+    setLoading(true);
     const result = await onSubmit(data);
     if (result.success) {
       toast.success(isSignIn ? "Signed in successfully" : "Account created");
       router.push("/");
+      setLoading(false);
     } else {
       toast.error(isSignIn ? "Invalid credentials" : "Account creation failed");
+      setLoading(false);
     }
   };
   return (
@@ -111,8 +115,10 @@ const AuthForm = <T extends FieldValues>({
 
           <Button
             type="submit"
-            className="w-full h-12 bg-[#6D54B5] text-white hover:bg-[#7D65C0]"
+            className="w-full h-12 bg-[#6D54B5] text-white hover:bg-[#7D65C0] flex gap-2 items-center"
+            // disabled={loading}
           >
+            {loading && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
             {isSignIn ? "Sign In" : "Create Account"}
           </Button>
         </form>

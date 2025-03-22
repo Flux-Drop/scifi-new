@@ -2,12 +2,12 @@
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useUi } from "@/contexts/UiContext";
-import { getInitials } from "@/lib/utils";
 import { Session } from "next-auth";
 import Link from "next/link";
 import DesktopMenu from "../Menu/desktop-menu";
 import MobileMenu from "../Menu/mobile-menu";
 
+import { signOutUser } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,15 +17,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { signOut } from "../../../../auth";
-import { signOutUser } from "@/actions/auth";
-import { toast } from "sonner";
-import Image from "next/image";
 import { useUser } from "@/contexts/UserDataContext";
+import Image from "next/image";
+import { toast } from "sonner";
 
 const Header = ({ session }: { session: Session }) => {
   const { isMobile, isTablet } = useUi();
-  const user = useUser();
+  const { currentUser } = useUser();
 
   const handleSignOut = () => {
     signOutUser();
@@ -73,12 +71,15 @@ const Header = ({ session }: { session: Session }) => {
 
             <DialogFooter>
               <div className="flex flex-col items-center w-full gap-4">
-                {user?.role === "ADMIN" && (
-                  <Link href="/admin" className="w-full">
-                    <Button className="w-full cursor-pointer bg-[#6D54B5] text-white hover:bg-[#6D54B5]/70">
-                      Admin Dashboard
-                    </Button>
-                  </Link>
+                {currentUser?.role === "ADMIN" && (
+                  <Button
+                    className="w-full cursor-pointer bg-[#6D54B5] text-white hover:bg-[#6D54B5]/70"
+                    onClick={() => {
+                      window.location.href = "/admin";
+                    }}
+                  >
+                    Admin Dashboard
+                  </Button>
                 )}
                 <Button
                   variant={"destructive"}

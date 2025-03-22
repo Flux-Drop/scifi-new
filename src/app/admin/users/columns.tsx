@@ -1,5 +1,6 @@
 "use client";
 
+import { updateUserRole } from "@/actions/users";
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
@@ -10,9 +11,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useUser } from "@/contexts/UserDataContext";
 import { ColumnDef } from "@tanstack/react-table";
 import { Trash2 } from "lucide-react";
+import Image from "next/image";
 import { ReactNode } from "react";
+import { toast } from "sonner";
 
 export type User = {
   firstName: string;
@@ -23,6 +27,14 @@ export type User = {
 };
 
 type Role = "ADMIN" | "USER";
+
+const handleRoleChange = async (newRole: Role, role: Role, email: string) => {
+  if (newRole === role) return;
+  const updatedRole = await updateUserRole(email, newRole);
+  if (!updatedRole) return;
+  toast.success("Role updated successfully");
+  return updatedRole;
+};
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -37,7 +49,7 @@ export const columns: ColumnDef<User>[] = [
           <img
             src={"/assets/profiles/1.png"}
             alt={fullName as string}
-            className="w-10 h-10 object-cover rounded-full"
+            className="object-cover rounded-full h-10 w-10"
           />
           <div className="flex flex-col items-start">
             <p className="font-semibold text-base">{fullName as ReactNode}</p>
@@ -61,6 +73,7 @@ export const columns: ColumnDef<User>[] = [
     header: () => <div className="text-left">Role</div>,
     cell: ({ row }) => {
       const role = row.original.role;
+      const email = row.original.email;
       if (!role) return null;
       return (
         <DropdownMenu>
@@ -79,7 +92,12 @@ export const columns: ColumnDef<User>[] = [
             <DropdownMenuLabel>Select Role</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuRadioGroup>
-              <DropdownMenuRadioItem value={"ADMIN"} onSelect={() => {}}>
+              <DropdownMenuRadioItem
+                value={"USER"}
+                onClick={() => {
+                  handleRoleChange("USER", role, email);
+                }}
+              >
                 <Badge
                   className={`rounded-full py-0.5 px-2 font-semibold bg-[#FDF2FA] text-[#C11574]`}
                 >
@@ -87,9 +105,9 @@ export const columns: ColumnDef<User>[] = [
                 </Badge>
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem
-                value={"USER"}
-                onSelect={() => {
-                  console.log(role);
+                value={"ADMIN"}
+                onClick={() => {
+                  handleRoleChange("ADMIN", role, email);
                 }}
               >
                 {" "}
