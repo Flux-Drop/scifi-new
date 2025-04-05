@@ -4,6 +4,7 @@ import prisma from "@/db";
 import { AuthCredentials } from "@/types/types";
 import { hash } from "bcryptjs";
 import { signIn, signOut } from "../../auth";
+import { revalidatePath } from "next/cache";
 
 export const signInWithCredentials = async (
   params: Pick<AuthCredentials, "email" | "password">
@@ -20,6 +21,7 @@ export const signInWithCredentials = async (
     if (result?.error) {
       return { success: false, message: result.error };
     }
+    revalidatePath("/");
     return { success: true, message: "Sign In successful" };
   } catch (error) {
     console.log(error, "Sign up error");
@@ -55,7 +57,7 @@ export const signUp = async (params: AuthCredentials) => {
     });
 
     // await signInWithCredentials({ email, password });
-
+    revalidatePath("/");
     return { success: true, message: "Sign up successful" };
   } catch (error) {
     console.log(error, "Sign up error");

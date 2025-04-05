@@ -89,6 +89,11 @@ export const adminSidebarLinks = [
     text: "Home",
   },
   {
+    img: "/icons/admin/upload.svg",
+    route: "/admin/banner",
+    text: "Banner",
+  },
+  {
     img: "/icons/admin/users.svg",
     route: "/admin/users",
     text: "All Users",

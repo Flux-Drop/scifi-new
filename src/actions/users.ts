@@ -2,6 +2,7 @@
 
 import prisma from "@/db";
 import { Role } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export const getUsers = async () => {
   try {
@@ -93,6 +94,7 @@ export const updateUserRole = async (email: string, role: Role) => {
         message: "An error occurred while updating the user role",
       };
     }
+    revalidatePath("/admin/users");
     return {
       success: true,
       data: updatedUserRole,

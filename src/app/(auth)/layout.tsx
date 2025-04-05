@@ -30,7 +30,7 @@ const layout = async ({ children }: { children: ReactNode }) => {
               Back to Website <ArrowRight className="text-white" size={18} />
             </Link>
           </div>
-          <div className="flex flex-col absolute bottom-12 text-4xl text-white text-center">
+          <div className="lg:flex flex-col absolute bottom-12 text-4xl text-white text-center hidden ">
             <h1>Empowering Connectivity,</h1>
             <h1>Ensuring Security</h1>
           </div>

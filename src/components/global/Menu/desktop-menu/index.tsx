@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/lib/constants";
 import { NavLink } from "@/types/types";
