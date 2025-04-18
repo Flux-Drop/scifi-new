@@ -1,21 +1,21 @@
 "use server";
 
-import prisma from "../db";
-import { ProductParams } from "@/types/types";
+import prisma from "@/db";
+import { BannerParams } from "@/types/types";
 
-export const createProduct = async (params: ProductParams) => {
+export const createBanner = async (params: BannerParams) => {
   try {
-    const product = await prisma.product.create({
+    const banner = await prisma.banner.create({
       data: {
         title: params.title,
         description: params.description,
-        price: params.price,
         image: params.image,
-        stock: params.stock,
+        order: params.order,
+        bannerStatus: params.bannerStatus,
       },
     });
-    console.log("PRODUCT: ", product);
-    if (!product) {
+    console.log("Banner: ", banner);
+    if (!banner) {
       return {
         success: false,
         message: "An error occurred",
@@ -24,41 +24,40 @@ export const createProduct = async (params: ProductParams) => {
 
     return {
       success: true,
-      message: "Product created successfully",
+      message: "banner created successfully",
     };
   } catch (error) {
     console.log(error);
 
     return {
       success: false,
-      message: "An error occurred while creating the Product",
+      message: "An error occurred while creating the banner",
     };
   }
 };
 
-export const getProducts = async () => {
+export const getBanner = async () => {
   try {
-    const products = await prisma.product.findMany({
+    const banners = await prisma.banner.findMany({
       select: {
         title: true,
-        price: true,
         image: true,
         description: true,
-        createdAt: true,
-        stock: true,
+        order: true,
+        bannerStatus: true,
       },
       orderBy: {
         createdAt: "desc",
       },
     });
-    if (!products) {
+    if (!banners) {
       return {
         success: false,
         message: "An error occurred",
       };
     }
-    console.log("PRODUCTS: ", products);
-    return { success: true, data: products };
+    console.log("Banner: ", banners);
+    return { success: true, data: banners };
   } catch (error) {
     console.log(error);
     return {
@@ -67,5 +66,3 @@ export const getProducts = async () => {
     };
   }
 };
-
-

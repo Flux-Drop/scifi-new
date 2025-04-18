@@ -26,3 +26,11 @@ interface ProductParams {
   price: number;
   image: string;
 }
+
+interface BannerParams {
+  title: string;
+  order: number;
+  description: string;
+  image: string;
+  bannerStatus: "ACTIVE" | "INACTIVE";
+}

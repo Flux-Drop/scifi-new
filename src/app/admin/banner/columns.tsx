@@ -12,23 +12,25 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 import { Trash2 } from "lucide-react";
+import Image from "next/image";
 import { ReactNode } from "react";
 
-export type Plans = {
-  firstName: string;
-  lastName: string | null;
-  email: string;
-  role: Role;
-  createdAt: Date;
+export type Banner = {
+  title: string;
+  description: string;
+  image: string;
+  order: number;
+  bannerStatus: BannerStatus;
 };
 
-type Role = "ADMIN" | "USER";
+type BannerStatus = "ACTIVE" | "INACTIVE";
 
-export const columns: ColumnDef<Plans>[] = [
+export const columns: ColumnDef<Banner>[] = [
   {
     accessorKey: "sno",
     header: () => <div className="text-left">S.No.</div>,
     cell: ({ row }) => {
+      console.log("jhsbcjshb", row);
       return (
         <div className="flex items-center gap-2">
           <p className="text-base">{(row.index + 1) as ReactNode}</p>
@@ -37,49 +39,66 @@ export const columns: ColumnDef<Plans>[] = [
     },
   },
   {
-    accessorKey: "title",
-    header: () => <div className="text-left">Name</div>,
+    accessorKey: "image",
+    header: () => <div className="text-left">Image</div>,
     cell: ({ row }) => {
-      const fullName = row.original.firstName + " " + row.original.lastName;
-      const email = row.original.email;
-      if (!fullName) return null;
+      const image = row.original.image;
       return (
         <div className="flex items-center gap-2">
-          <p className="text-base">{fullName as ReactNode}</p>
+          <img
+            src={image}
+            alt={"Banner Image"}
+            className="w-10 h-10 object-cover rounded-lg"
+          />
         </div>
       );
     },
   },
   {
-    accessorKey: "created_at",
-    header: () => <div className="text-left">Date Joined</div>,
+    accessorKey: "title",
+    header: () => <div className="text-left">Title</div>,
     cell: ({ row }) => {
-      const date = row.original.createdAt;
-      if (!date) return null;
-      return <p>{new Date(date).toDateString()}</p>;
+      const title = row.original.title;
+      return (
+        <div className="flex items-center gap-2">
+          <p className="text-base">{title}</p>
+        </div>
+      );
     },
   },
   {
-    accessorKey: "Status",
-    header: () => <div className="text-left">Role</div>,
+    accessorKey: "description",
+    header: () => <div className="text-left">Description</div>,
     cell: ({ row }) => {
-      const role = row.original.role;
-      if (!role) return null;
+      const description = row.original.description;
+      return (
+        <div className="flex items-center gap-2">
+          <p className="text-base">{description}</p>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "bannerStatus",
+    header: () => <div className="text-left">Active Status</div>,
+    cell: ({ row }) => {
+      const status = row.original.bannerStatus;
+      console.log("stststs", status);
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Badge
               className={`rounded-full py-0.5 px-2 font-semibold ${
-                role === "USER"
+                status === "INACTIVE"
                   ? "bg-[#FDF2FA] text-[#C11574]"
                   : "bg-[#ECFDF3] text-[#027A48]"
               }`}
             >
-              {role}
+              {status}
             </Badge>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Select Role</DropdownMenuLabel>
+            <DropdownMenuLabel>Select Status</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuRadioGroup>
               <DropdownMenuRadioItem value={"ACTIVE"} onSelect={() => {}}>
@@ -92,7 +111,7 @@ export const columns: ColumnDef<Plans>[] = [
               <DropdownMenuRadioItem
                 value={"INACTIVE"}
                 onSelect={() => {
-                  console.log(role);
+                  console.log(status);
                 }}
               >
                 {" "}

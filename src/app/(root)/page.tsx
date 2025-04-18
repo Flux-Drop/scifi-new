@@ -9,10 +9,13 @@ import Testimonails from "@/components/global/testimonials";
 import Wrapper from "@/components/global/wrapper";
 import Banner from "@/components/ui/banner";
 import Contact from "@/components/global/contact";
+import HeroBanner from "@/components/global/hero-banner";
+import FAQSection from "@/components/global/faq-section";
 
 export default function Home() {
   return (
     <>
+      {/* <HeroBanner /> */}
       <Hero />
       <Wrapper>
         <About />
@@ -20,6 +23,7 @@ export default function Home() {
         {/* <Banner /> */}
         <HoverCards />
         <Testimonails />
+        <FAQSection />
         <Contact />
       </Wrapper>
     </>

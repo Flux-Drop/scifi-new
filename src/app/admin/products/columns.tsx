@@ -1,7 +1,8 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, Trash2 } from "lucide-react";
+import { ArrowUpDown, Edit, Trash2 } from "lucide-react";
 import { ReactNode } from "react";
 
 export type Product = {
@@ -46,7 +47,15 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "created_at",
-    header: () => <div className="text-left">Created At</div>,
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Created At
+        <ArrowUpDown />
+      </Button>
+    ),
     cell: ({ row }) => {
       const date = row.original.createdAt;
       if (!date) return null;
@@ -63,7 +72,15 @@ export const columns: ColumnDef<Product>[] = [
 
   {
     accessorKey: "price",
-    header: "Price",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Price
+        <ArrowUpDown />
+      </Button>
+    ),
   },
   {
     accessorKey: "actions",

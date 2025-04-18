@@ -8,7 +8,7 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const Hero = () => {
   return (
-    <div className="flex justify-center items-start h-[50vh] lg:h-[80vh] w-screen bg-[url('/assets/wave.png')] bg-cover bg-center relative mb-0 lg:mb-[20vh]">
+    <div className="flex justify-center items-start h-[50vh] lg:h-[80vh] w-screen bg-[url('/assets/wave.png')] bg-cover bg-center relative mb-0 lg:mb-[0vh]">
       <div className="flex flex-col text-slate-200 gap-4 justify-center items-start lg:items-center px-5 xs:px-10 md:px-16">
         <Text>
           Super High Speed <br /> Internet Experience

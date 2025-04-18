@@ -29,15 +29,15 @@ model Product {
   stock       Int
 }
 
-model Plan {
-  id        String   @id @default(cuid())
-  name      String
-  speed     String
-  price     Float
-  dataLimit String
-  validity  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Banner {
+  id           String       @id @default(cuid())
+  title        String
+  description  String
+  image        String
+  order        Int          @unique
+  bannerStatus BannerStatus @default(ACTIVE)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 }
 
 model Order {
@@ -49,6 +49,34 @@ model Order {
   createdAt  DateTime    @default(now())
 }
 
+// Plans Schema 
+model PlanCategory {
+  id          Int    @id @default(autoincrement())
+  name        String //Entertainment Plan or Speed Plan
+  description String
+  plans       Plan[]
+}
+
+model Plan {
+  id          Int          @id @default(autoincrement())
+  name        String
+  category    PlanCategory @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  speed       String
+  ottServices String[]
+  offers      String[]
+  pricings    Pricing[]
+}
+
+model Pricing {
+  id               Int   @id @default(autoincrement())
+  plan             Plan  @relation(fields: [planId], references: [id], onDelete: Cascade)
+  planId           Int
+  durationMonths   Int
+  amountWithoutTax Float
+  amountWithTax    Float
+}
+
 enum Role {
   USER
   ADMIN
@@ -58,4 +86,9 @@ enum OrderStatus {
   PENDING
   COMPLETED
   CANCELLED
+}
+
+enum BannerStatus {
+  ACTIVE
+  INACTIVE
 }

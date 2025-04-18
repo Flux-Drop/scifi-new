@@ -109,3 +109,136 @@ export const adminSidebarLinks = [
     text: "All Products",
   },
 ];
+
+// src/data/faqs.ts
+export interface FAQ {
+  category: string;
+  questions: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+export const faqs: FAQ[] = [
+  {
+    category: "New Connection",
+    questions: [
+      {
+        question: "How do I apply for a new connection with Scify?",
+        answer:
+          "You can apply for a new connection with Scify by visiting our website and filling out the online application form. Alternatively, you can contact our customer service team for assistance with the application process.",
+      },
+      {
+        question: "What documents do I need to provide for a new connection?",
+        answer:
+          "The documents required for a new connection may vary depending on your location and the type of service you are applying for. Generally, you will need to provide proof of identity, proof of address, and any other relevant documents requested by Scify for KYC.",
+      },
+      {
+        question: "How long does it take to get a new connection installed?",
+        answer:
+          "The time taken to install a new connection can vary depending on various factors such as location, availability of infrastructure, and the type of service requested. Our customer service team will provide you with an estimated timeline for installation.",
+      },
+    ],
+  },
+  {
+    category: "Account",
+    questions: [
+      {
+        question: "How can I access my Scify account?",
+        answer:
+          "You can access your Scify account through our website. Simply log in using your username and password to view your account details, billing information, and more.",
+      },
+      {
+        question: "How can I update my account information?",
+        answer:
+          "You can update your account information by logging into your Scify account and navigating to the profile or settings section. From there, you can update your contact details, billing information, and other account information as needed.",
+      },
+      {
+        question: "How can I change my Scify plan?",
+        answer:
+          "You can change your Scify plan by logging into your account and selecting the option to change your plan. Alternatively, you can contact our customer service team for assistance with changing your plan.",
+      },
+    ],
+  },
+  {
+    category: "Payment",
+    questions: [
+      {
+        question: "What payment methods does Scify accept?",
+        answer:
+          "Scify accepts various payment methods including credit/debit cards, net banking, mobile wallets, and more. You can choose the payment method that is most convenient for you.",
+      },
+      {
+        question: "Can I set up auto-pay for my Scify bill?",
+        answer:
+          "Yes, you can set up auto-pay for your Scify bill through your account settings. This will ensure that your bill is automatically paid on the due date each month.",
+      },
+      {
+        question: "What should I do if I have issues with my payment?",
+        answer:
+          "If you have any issues with your payment, please contact our customer service team for assistance. We will work with you to resolve the issue as quickly as possible.",
+      },
+    ],
+  },
+  {
+    category: "Shifting and Reconnection",
+    questions: [
+      {
+        question:
+          "How can I request a shift or reconnection of my Scify services?",
+        answer:
+          "You can request a shift or reconnection of your Scify services by contacting our customer service team. They will assist you with the process and provide you with the necessary information.",
+      },
+      {
+        question: "Is there a fee for shifting or reconnection of services?",
+        answer:
+          "Fees for shifting or reconnection of services may vary depending on the type of service and the location. Our customer service team will provide you with information about any applicable fees.",
+      },
+      {
+        question: "How long does it take to shift or reconnect my services?",
+        answer:
+          "The time taken to shift or reconnect your services can vary depending on various factors such as location and availability of infrastructure. Our customer service team will provide you with an estimated timeline for the process.",
+      },
+    ],
+  },
+  {
+    category: "Referral",
+    questions: [
+      {
+        question: "Does Scify offer a referral program?",
+        answer:
+          "Yes, Scify offers a referral program where you can earn rewards for referring new customers to us. Please visit our website or contact our customer service team for more information about our referral program.",
+      },
+      {
+        question: "How can I refer a friend to Scify?",
+        answer:
+          "You can refer a friend to Scify by sharing your referral link or code with them. When they sign up for a new connection using your referral link or code, you will be eligible for rewards as per our referral program.",
+      },
+      {
+        question: "When will I receive my referral rewards?",
+        answer:
+          "Referral rewards are typically processed once the new customer has successfully signed up for a new connection with Scify and met the eligibility criteria of our referral program. You will receive your rewards as per the terms and conditions of the program.",
+      },
+    ],
+  },
+  {
+    category: "Home Security Solutions",
+    questions: [
+      {
+        question: "What home security solutions does Scify offer?",
+        answer:
+          "Scify offers a range of home security solutions including video door phones, smart security cameras, and more. These solutions are designed to enhance the security of your home and provide you with peace of mind.",
+      },
+      {
+        question: "How can I purchase home security solutions from Scify?",
+        answer:
+          "You can purchase home security solutions from Scify by visiting our website or contacting our customer service team. Our team will assist you in selecting the right security solutions for your home and arrange for installation if required.",
+      },
+      {
+        question: "Are Scify's home security solutions customizable?",
+        answer:
+          "Yes, Scify's home security solutions can be customized to meet your specific security needs. Our team will work with you to design a security system that fits your requirements and budget.",
+      },
+    ],
+  },
+];
