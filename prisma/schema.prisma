@@ -20,24 +20,39 @@ model User {
 
 model Product {
   id          String   @id @default(cuid())
-  title       String
   price       Int
   image       String
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   stock       Int
+  title       String
 }
 
 model Plan {
-  id        String   @id @default(cuid())
-  name      String
-  speed     String
-  price     Float
-  dataLimit String
-  validity  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String        @id @default(cuid())
+  name             String        @unique
+  speed            String
+  dataLimit        String
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  category         PlanCategory
+  offers           Json
+  ottSubscriptions Json?
+  pricings         PlanPricing[]
+}
+
+model PlanPricing {
+  id              String   @id @default(cuid())
+  planId          String
+  duration        Int
+  priceWithoutTax Float
+  priceWithTax    Float
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  plan            Plan     @relation(fields: [planId], references: [id])
+
+  @@unique([planId, duration])
 }
 
 model Order {
@@ -58,4 +73,9 @@ enum OrderStatus {
   PENDING
   COMPLETED
   CANCELLED
+}
+
+enum PlanCategory {
+  ENTERTAINMENT
+  SPEED
 }

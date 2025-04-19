@@ -26,3 +26,16 @@ interface ProductParams {
   price: number;
   image: string;
 }
+export interface PlanParams {
+  name: string;
+  speed: string;
+  dataLimit: string;
+  category: "ENTERTAINMENT" | "SPEED";
+  ottSubscriptions?: string[];
+  offers: string[];
+  pricings: {
+    duration: number;
+    priceWithoutTax: number;
+    priceWithTax: number;
+  }[];
+}

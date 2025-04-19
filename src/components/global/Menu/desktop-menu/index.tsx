@@ -19,18 +19,19 @@ const DesktopMenu = () => {
       <div className="flex items-center">
         {filteredLinks.map((item) => (
           <motion.span
-            key={item.path} // Use path as unique key
+            key={item.path} 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.9 }}
             className="mx-3"
           >
-            <Link
+            <a
               href={item.path}
               className={`text-lg font-semibold`}
               aria-current={pathname === item.path ? "page" : undefined}
+              // prefetch={true}
             >
               {item.name}
-            </Link>
+            </a>
           </motion.span>
         ))}
       </div>
