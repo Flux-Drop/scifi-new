@@ -9,11 +9,12 @@ import Testimonails from "@/components/global/testimonials";
 import Wrapper from "@/components/global/wrapper";
 import Banner from "@/components/ui/banner";
 import Contact from "@/components/global/contact";
+import BannerCarousel from "@/components/global/hero/banner-carousel";
 
 export default function Home() {
   return (
-    <>
-      <Hero />
+    <div className="mx-auto w-full px-5 xs:px-10 md:px-24">
+      <BannerCarousel />
       <Wrapper>
         <About />
         <Services />
@@ -22,6 +23,6 @@ export default function Home() {
         <Testimonails />
         <Contact />
       </Wrapper>
-    </>
+    </div>
   );
 }
