@@ -23,10 +23,53 @@ const Contact = () => {
       email: "",
       phone: "",
       query: "",
+      pinCode: "",
+      installationAddress: "",
     },
   });
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [addressLoading, setAddressLoading] = useState<boolean>(false);
+
+  const handleGeolocation = async () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+      return;
+    }
+
+    setAddressLoading(true);
+    try {
+      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+
+      console.log("position: ", position)
+
+      // Use a geocoding service to get address from coordinates
+      const response = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=${process.env.NEXT_PUBLIC_OPENCAGE_API_KEY}`
+      );
+      console.log("response: ", response)
+      
+      const data = await response.json();
+      console.log('data:', data)
+      const components = data.results[0].components;
+      
+      form.setValue("installationAddress", [
+        components.road,
+        components.city,
+        components.state,
+        components.country
+      ].filter(Boolean).join(", "));
+      
+      form.setValue("pinCode", components.postcode);
+    } catch (error) {
+      console.error("Error fetching location:", error);
+      alert("Error fetching location. Please enter manually.");
+    } finally {
+      setAddressLoading(false);
+    }
+  };
 
   const onSubmit = (values: z.infer<typeof ContactSchema>) => {
     console.log(values);
@@ -50,7 +93,7 @@ const Contact = () => {
         {/* Form */}
         <div className="">
           <Form {...form}>
-            <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+
               <FormField
                 control={form.control}
                 name="name"
@@ -98,6 +141,56 @@ const Contact = () => {
                         disabled={loading}
                         type="tel"
                         placeholder="Enter your phone number"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+              {/* New Location Fields */}
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="pinCode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>PIN Code</FormLabel>
+                      <FormControl>
+                        <Input
+                          disabled={loading}
+                          placeholder="Enter PIN code"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="flex items-end">
+                  <Button
+                    type="button"
+                    onClick={handleGeolocation}
+                    disabled={addressLoading}
+                    className="w-full"
+                    variant="outline"
+                  >
+                    {addressLoading ? "Fetching..." : "Use Current Location"}
+                  </Button>
+                </div>
+              </div>
+
+              <FormField
+                control={form.control}
+                name="installationAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Installation Address</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={loading}
+                        placeholder="Start typing your address"
                         {...field}
                       />
                     </FormControl>
