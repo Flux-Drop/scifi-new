@@ -40,7 +40,7 @@ const FAQSection: React.FC = () => {
             <motion.button
               key={faq.category}
               onClick={() => setActiveCategory(faq.category)}
-              className={`w-full text-left py-2 px-4 rounded-full mb-2 flex items-center gap-2 hover:bg-[#001816] transition-colors font-semibold ${
+              className={`w-full text-left py-2 px-4 rounded-lg mb-2 flex items-center gap-2 hover:bg-[#001816] transition-colors font-semibold ${
                 activeCategory === faq.category
                   ? "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 bg-gradient-to-r from-[#39E6B9] to-purple-500 text-white shadow-lg shadow-purple-500/20"
                   : ""
@@ -64,7 +64,7 @@ const FAQSection: React.FC = () => {
               .find((faq) => faq.category === activeCategory)
               ?.questions.map((q, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className=" my-4 rounded-2xl border-[#39E6B9]/20 border relative px-4 group transition-all duration-300">
-                 <div className="absolute inset-0 group-hover:bg-gradient-to-r from-[#39E6B9] to-purple-500  opacity-[0.15]  rounded-2xl blur-xl -z-10 transition-all duration-300"></div>
+                 <div className="absolute inset-0 group-hover:bg-gradient-to-r from-[#39E6B9] to-purple-500  opacity-[0.25]  rounded-2xl blur-xl -z-10 transition-all duration-300"></div>
                   <AccordionTrigger className="text-lg text-white ">
                     {q.question}
                   </AccordionTrigger>
