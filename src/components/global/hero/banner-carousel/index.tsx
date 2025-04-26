@@ -42,6 +42,7 @@ const BannerCarousel = () => {
 
   return (
     <div className="relative">
+      
     <div className="overflow-hidden rounded-3xl" ref={emblaRef}>
         
       <div className="flex">

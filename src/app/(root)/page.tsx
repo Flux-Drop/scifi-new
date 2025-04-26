@@ -13,7 +13,7 @@ import BannerCarousel from "@/components/global/hero/banner-carousel";
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full px-5 xs:px-10 md:px-24">
+    <div className="mx-auto w-full px-5 xs:px-10 md:px-12">
       <BannerCarousel />
       <Wrapper>
         <About />
