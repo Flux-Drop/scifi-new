@@ -2,11 +2,17 @@ import Text from "@/components/ui/text";
 import {
   BotIcon,
   Check,
+  Clapperboard,
   GitBranchPlus,
   Globe2Icon,
+  HandHeart,
   Handshake,
+  Headset,
+  HeartHandshake,
   Phone,
+  Rocket,
   Tv,
+  Wallet,
 } from "lucide-react";
 import React from "react";
 
@@ -16,37 +22,37 @@ const AboutCards = () => {
       title: "Reliable Internet for Homes & Business",
       description:
         "Scify Fibernet offers high-speed internet connectivity, allowing you to browse, stream, download, and upload content quickly and efficiently.",
-      icon: <Globe2Icon fill="white" size={50} />,
+      icon: <HeartHandshake stroke="white" size={28} />,
     },
     {
       title: "Affordability",
       description:
         "Scify has vision that every household should be connected all the time. Scify Fibernet offers affordable plans, making it accessible to a wide range of customers",
-      icon: <Handshake fill="white" size={50} />,
+      icon: <Wallet stroke="white" size={28} />,
     },
     {
       title: "Hassle free Customer Support",
       description:
         "At Scify, we prioritize our customers above all else. We handle every query and complaint with utmost seriousness and ensure prompt resolution.",
-      icon: <Phone fill="white" size={50} />,
+      icon: <Headset stroke="white" size={28} />,
     },
     {
       title: "Entertainment",
       description:
         "Scify Fibernet offers various entertainment options, such as streaming services and smart TV features, to enhance your entertainment experience.",
-      icon: <Tv fill="white" size={50} />,
+      icon: <Clapperboard stroke="white" size={28} />,
     },
     {
       title: "Innovation",
       description:
         "Scify Fibernet is constantly innovating and upgrading its services to provide you with the latest technology and features.",
-      icon: <GitBranchPlus fill="white" size={50} />,
+      icon: <Rocket stroke="white" size={28} />,
     },
     {
       title: "Value-added Services",
       description:
         "Scify Fibernet offers various value-added services, such as free hardware and software checks, to enhance your overall experience.",
-      icon: <Check fill="white" size={50} />,
+      icon: <HandHeart stroke="white" size={28} />,
     },
   ];
   return (
@@ -63,17 +69,32 @@ const AboutCards = () => {
       <div className="grid justify-center gap-4 sm:grid-cols-2 md:max-w-screen md:grid-cols-3 mt-10">
         {whyUsCards.map((card, index) => (
           <div
-            className="relative overflow-hidden rounded-lg border bg-gray-200 select-none hover:shadow hover:shadow-teal-200 p-2"
-            key={card.title}
-          >
-            <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
+          className="relative group"
+          key={card.title}
+        >
+          {/* Hover Background Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-[0.15] transition-opacity duration-500 rounded-2xl blur-xl" />
+        
+          {/* Card Container */}
+          <div className="relative p-8 bg-white/[0.03] border border-white/[0.1] rounded-2xl backdrop-blur-sm group-hover:border-purple-500/20 transition-all duration-500 h-full">
+            
+            {/* Icon Wrapper */}
+            <div className="p-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl w-min opacity-90">
               {card.icon}
-              <div className="space-y-2">
-                <h3 className="font-bold">{card.title}</h3>
-                <p className="text-sm ">{card.description}</p>
-              </div>
             </div>
+        
+            {/* Title */}
+            <h3 className="mt-6 text-2xl font-semibold text-white">
+              {card.title}
+            </h3>
+        
+            {/* Description */}
+            <p className="mt-4 text-lg text-gray-300 leading-relaxed">
+              {card.description}
+            </p>
+          {/* <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" /> */}
           </div>
+        </div>
         ))}
       </div>
     </section>

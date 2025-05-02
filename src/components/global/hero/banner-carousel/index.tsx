@@ -1,9 +1,8 @@
 "use client";
-import React, { useState, useCallback, useEffect } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button"; // adjust path as needed
-import { ShinyButton } from "@/components/magicui/shiny-button";
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 
 const slides = [
   {
@@ -49,7 +48,7 @@ const BannerCarousel = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="flex-[0_0_100%] relative w-full h-[600px] bg-cover bg-center"
+            className="flex-[0_0_100%] relative w-full h-[80vh] bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" />

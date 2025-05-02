@@ -10,6 +10,7 @@ import Wrapper from "@/components/global/wrapper";
 import Banner from "@/components/ui/banner";
 import Contact from "@/components/global/contact";
 import BannerCarousel from "@/components/global/hero/banner-carousel";
+import FAQSection from "@/components/global/faq-section";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         {/* <Banner /> */}
         <HoverCards />
         <Testimonails />
+        <FAQSection />
         <Contact />
       </Wrapper>
     </div>

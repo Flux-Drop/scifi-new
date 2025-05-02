@@ -91,7 +91,7 @@ const Contact = () => {
         </div>
 
         {/* Form */}
-        <div className="">
+        <div className="flex flex-col gap-6">
           <Form {...form}>
 
               <FormField
