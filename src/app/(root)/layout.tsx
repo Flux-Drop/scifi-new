@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { auth } from "../../../auth";
 import Image from "next/image";
+import Footer from "@/components/global/footer";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
@@ -19,6 +20,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       </div>
       <div>
          {children}</div>
+         <Footer />
     </main>
   );
 };
