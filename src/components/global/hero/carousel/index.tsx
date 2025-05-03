@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Slide = {
@@ -43,9 +44,11 @@ export default function Carousel({ slides }: { slides: Slide[] }) {
               <div className="relative z-20 px-6 md:px-12 py-20 max-w-2xl text-white top-[20%]">
                 <h1 className="text-3xl md:text-5xl font-bold leading-tight">{slide.title}</h1>
                 <p className="mt-4 text-lg md:text-xl">{slide.description}</p>
+                <Link href={slide.ctaUrl}>
                 <Button className="mt-6 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-5 py-5 rounded-full hover:scale-105 transition font-bold cursor-pointer">
-                  Check Now
+                  {slide.ctaText}
                 </Button>
+                </Link>
               </div>
             </div>
           ))}

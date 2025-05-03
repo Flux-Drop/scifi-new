@@ -11,7 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
-import { Trash2 } from "lucide-react";
+import { Edit, Trash2 } from "lucide-react";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 export type Banner = {
@@ -43,7 +44,6 @@ export const columns: ColumnDef<Banner>[] = [
     accessorKey: "banner_image",
     header: () => <div className="text-left">Image</div>,
     cell: ({ row }) => {
-      console.log("row os:", row)
       return (
         <div className="flex items-center gap-2">
            <img
@@ -151,10 +151,12 @@ export const columns: ColumnDef<Banner>[] = [
     header: () => <div className="text-left">Action</div>,
     cell: ({ row }) => {
       return (
-        <Trash2
-          size={20}
-          className="text-[#FF1512] cursor-pointer text-center"
-        />
+        <div className="flex items-center gap-4 ">
+          <Link href={'/admin/banner/edit'}>
+          <Edit size={20} className="text-[#6D54B5] cursor-pointer" />
+          </Link>
+          <Trash2 size={20} className="text-[#FF1512] cursor-pointer" />
+        </div>
       );
     },
   },
