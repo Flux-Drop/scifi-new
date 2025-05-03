@@ -14,17 +14,20 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Trash2 } from "lucide-react";
 import { ReactNode } from "react";
 
-export type Plans = {
-  firstName: string;
-  lastName: string | null;
-  email: string;
-  role: Role;
+export type Banner = {
+  id: string;
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaUrl: string;
+  imageUrl: string;
+  order: number;
+  isActive: boolean;
   createdAt: Date;
+  updatedAt: Date;
 };
 
-type Role = "ADMIN" | "USER";
-
-export const columns: ColumnDef<Plans>[] = [
+export const columns: ColumnDef<Banner>[] = [
   {
     accessorKey: "sno",
     header: () => <div className="text-left">S.No.</div>,
@@ -37,22 +40,63 @@ export const columns: ColumnDef<Plans>[] = [
     },
   },
   {
-    accessorKey: "title",
-    header: () => <div className="text-left">Name</div>,
+    accessorKey: "banner_image",
+    header: () => <div className="text-left">Image</div>,
     cell: ({ row }) => {
-      const fullName = row.original.firstName + " " + row.original.lastName;
-      const email = row.original.email;
-      if (!fullName) return null;
+      console.log("row os:", row)
       return (
         <div className="flex items-center gap-2">
-          <p className="text-base">{fullName as ReactNode}</p>
+           <img
+            src={row.original.imageUrl}
+            alt={row.original.title as string}
+            className="w-10 h-10 object-cover rounded-lg"
+          />
         </div>
       );
     },
   },
   {
-    accessorKey: "created_at",
-    header: () => <div className="text-left">Date Joined</div>,
+    accessorKey: "title",
+    header: () => <div className="text-left">Title</div>,
+    cell: ({ row }) => {
+      const title = row.original.title;
+      if (!title) return null;
+      return (
+        <div className="flex items-center gap-2">
+          <p className="text-base text-wrap">{title as ReactNode}</p>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "description",
+    header: () => <div className="text-left">Description</div>,
+    cell: ({ row }) => {
+      const description = row.original.description;
+      if (!description) return null;
+      return (
+        <div className="flex items-center gap-2">
+          <p className="text-base text-wrap">{description as ReactNode}</p>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "order",
+    header: () => <div className="text-left">Order</div>,
+    cell: ({ row }) => {
+      const order = row.original.order;
+      if (order === undefined) return null;
+      return (
+        <div className="flex items-center gap-2">
+          <p className="text-base">{order as ReactNode}</p>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "createdAt",
+    header: () => <div className="text-left">Created At</div>,
     cell: ({ row }) => {
       const date = row.original.createdAt;
       if (!date) return null;
@@ -60,44 +104,38 @@ export const columns: ColumnDef<Plans>[] = [
     },
   },
   {
-    accessorKey: "Status",
-    header: () => <div className="text-left">Role</div>,
+    accessorKey: "status",
+    header: () => <div className="text-left">Status</div>,
     cell: ({ row }) => {
-      const role = row.original.role;
-      if (!role) return null;
+      const isActive = row.original.isActive;
+      const status = isActive ? "ACTIVE" : "INACTIVE";
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Badge
               className={`rounded-full py-0.5 px-2 font-semibold ${
-                role === "USER"
-                  ? "bg-[#FDF2FA] text-[#C11574]"
-                  : "bg-[#ECFDF3] text-[#027A48]"
+                isActive
+                  ? "bg-[#ECFDF3] text-[#027A48]"
+                  : "bg-[#FDF2FA] text-[#C11574]"
               }`}
             >
-              {role}
+              {status}
             </Badge>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Select Role</DropdownMenuLabel>
+            <DropdownMenuLabel>Select Status</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuRadioGroup>
-              <DropdownMenuRadioItem value={"ACTIVE"} onSelect={() => {}}>
+              <DropdownMenuRadioItem value="ACTIVE" onSelect={() => {}}>
                 <Badge
-                  className={`rounded-full py-0.5 px-2 font-semibold bg-[#FDF2FA] text-[#C11574]`}
+                  className="rounded-full py-0.5 px-2 font-semibold bg-[#ECFDF3] text-[#027A48]"
                 >
                   ACTIVE
                 </Badge>
               </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem
-                value={"INACTIVE"}
-                onSelect={() => {
-                  console.log(role);
-                }}
-              >
-                {" "}
+              <DropdownMenuRadioItem value="INACTIVE" onSelect={() => {}}>
                 <Badge
-                  className={`rounded-full py-0.5 px-2 font-semibold bg-[#ECFDF3] text-[#027A48]`}
+                  className="rounded-full py-0.5 px-2 font-semibold bg-[#FDF2FA] text-[#C11574]"
                 >
                   INACTIVE
                 </Badge>
@@ -108,7 +146,6 @@ export const columns: ColumnDef<Plans>[] = [
       );
     },
   },
-
   {
     accessorKey: "actions",
     header: () => <div className="text-left">Action</div>,

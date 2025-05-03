@@ -39,3 +39,14 @@ export interface PlanParams {
     priceWithTax: number;
   }[];
 }
+
+// Define BannerParams type
+export type BannerParams = {
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaUrl: string;
+  imageUrl: string;
+  order: number;
+  isActive: boolean;
+};

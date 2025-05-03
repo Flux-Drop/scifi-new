@@ -24,7 +24,6 @@ export const getUsers = async () => {
         message: "An error occurred",
       };
     }
-    console.log("USERS: ", users);
     return {
       success: true,
       data: users,
