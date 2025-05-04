@@ -138,6 +138,40 @@ export const updateBanner = async (id: string, params: Partial<BannerParams>) =>
   }
 };
 
+export const getBannerById = async (id: string) => {
+  try {
+    const banner = await prisma.banner.findUnique({
+      where: { id },
+      select: {
+        title: true,
+        description: true,
+        ctaText: true,
+        ctaUrl: true,
+        isActive: true,
+        imageUrl: true,
+        order: true,
+      }
+    });
+    if (!banner) {
+      return {
+        success: false,
+        message: "Banner not found",
+      };
+    }
+    return {
+      success: true,
+      message: "Banner found successfully",
+      data: banner
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: "An error occurred while updating the banner",
+    };
+  }
+}
+
 // Delete a banner by ID
 export const deleteBanner = async (id: string) => {
   try {

@@ -1,10 +1,11 @@
-"use client";
+import { getBannerById } from "@/actions/banner";
 import BannerForm from "@/components/admin/forms/banner-form";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-const page = () => {
+const page = async ({ params }: { params: { id: string } }) => {
+const {data: bannerById} = await getBannerById(params?.id);
   return (
     <>
       <Button
@@ -18,7 +19,7 @@ const page = () => {
       </Button>
 
       <section className="w-full max-w-2xl">
-        <BannerForm />
+        <BannerForm type="update" banner={bannerById} id={params?.id} />
       </section>
     </>
   );

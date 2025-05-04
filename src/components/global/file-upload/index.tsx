@@ -38,6 +38,8 @@ const FileUpload: React.FC<FileUploadProps> = ({
   });
   const [progress, setProgress] = useState<number>(0);
 
+  console.log("file . filepath", file.filePath);
+
   const authenticator = async () => {
     try {
       const response = await fetch(`${apiEndpointDev}/api/auth/imagekit`);
@@ -142,13 +144,17 @@ const FileUpload: React.FC<FileUploadProps> = ({
         {file.filePath && (
           <p className="mt-1 text-center text-xs">{file.filePath}</p>
         )}
-        {file.filePath && (
-          <IKImage
-            alt={file.filePath!}
-            path={file.filePath!}
-            width={500}
-            height={500}
-          />
+       {file.filePath && (
+        <IKImage
+          alt="Uploaded Banner Image"
+          path={
+            file.filePath.startsWith(urlEndpoint)
+              ? file.filePath.replace(`${urlEndpoint}/`, "")
+              : file.filePath
+          }
+          width={500}
+          height={500}
+        />
         )}
       </button>
       {file.filePath && (

@@ -1,5 +1,5 @@
 "use client";
-import { createBanner } from "@/actions/banner";
+import { createBanner, updateBanner } from "@/actions/banner";
 import FileUpload from "@/components/global/file-upload";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,8 +11,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import { bannerSchema } from "@/helpers/zod/admin/banner-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Banner } from "@prisma/client";
@@ -20,20 +20,15 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon } from "lucide-react";
-import { Calendar } from "@/components/ui/calendar";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 interface BannerFormProps {
   type?: "create" | "update";
   banner?: Partial<Banner>;
+  id?:string;
 }
 
-const BannerForm = ({ type = "create", banner }: BannerFormProps) => {
+const BannerForm = ({ type = "create", banner, id }: BannerFormProps) => {
   const router = useRouter();
-  const [date, setDate] = useState<Date>();
   const form = useForm<z.infer<typeof bannerSchema>>({
     resolver: zodResolver(bannerSchema),
     defaultValues: {
@@ -48,6 +43,7 @@ const BannerForm = ({ type = "create", banner }: BannerFormProps) => {
   });
 
   const onSubmit = async (values: z.infer<typeof bannerSchema>) => {
+    if(type==="create") {
     await createBanner(values)
       .then((res) => {
         if (res.success) {
@@ -59,6 +55,23 @@ const BannerForm = ({ type = "create", banner }: BannerFormProps) => {
         toast.error("An error occurred while creating the Banner");
         console.log(error);
       });
+    }
+    else {
+      if(!id) {
+        toast.error("No Banner is selected");
+      }
+      await updateBanner(id!, values)
+      .then((res) => {
+          if (res.success) {
+            toast.success("Banner updated successfully");
+            router.push("/admin/banner");
+          }
+        })
+        .catch((error: any) => {
+          toast.error("An error occurred while creating the Banner");
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -211,7 +224,7 @@ const BannerForm = ({ type = "create", banner }: BannerFormProps) => {
           type="submit"
           className="w-full bg-[#6D54B5] text-white cursor-pointer hover:bg-[#6D54B5]/80"
         >
-          Add Banner
+          {type === 'create' ? "Add Banner" : "Update Banner"}
         </Button>
       </form>
     </Form>

@@ -129,10 +129,6 @@ const Plans = () => {
     },
   };
 
-
-
-
-
   return (
     <div className="text-white flex flex-col gap-8 items-start py-10 mx-auto w-full px-5 xs:px-10 md:px-24 relative">
       <div className="fixed inset-0 -z-10 overflow-hidden">

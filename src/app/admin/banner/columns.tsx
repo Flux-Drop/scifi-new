@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
@@ -152,10 +151,12 @@ export const columns: ColumnDef<Banner>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-4 ">
-          <Link href={'/admin/banner/edit'}>
+          <Link href={`/admin/banner/edit/${row.original.id}`}>
           <Edit size={20} className="text-[#6D54B5] cursor-pointer" />
           </Link>
-          <Trash2 size={20} className="text-[#FF1512] cursor-pointer" />
+          <Link href={`/admin/banner/delete/${row.original.id}`}>
+          <Trash2 size={20} className="text-[#FF1512] cursor-pointer"/>
+          </Link>
         </div>
       );
     },
