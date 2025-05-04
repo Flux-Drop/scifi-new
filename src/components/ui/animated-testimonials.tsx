@@ -4,7 +4,7 @@ import { Testimonial } from "@/types/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const AnimatedTestimonials = ({
   testimonials,
@@ -15,9 +15,9 @@ export const AnimatedTestimonials = ({
 }) => {
   const [active, setActive] = useState(0);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActive((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
   const handlePrev = () => {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -26,13 +26,13 @@ export const AnimatedTestimonials = ({
   const isActive = (index: number) => {
     return index === active;
   };
-
-  useEffect(() => {
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [autoplay]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
+  if (autoplay) {
+    const interval = setInterval(handleNext, 5000);
+    return () => clearInterval(interval);
+  }
+}, [autoplay, handleNext]);
 
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;

@@ -1,10 +1,8 @@
 "use client";
 import ProductForm from "@/components/admin/forms/product-form";
 import { Button } from "@/components/ui/button";
-import { productSchema } from "@/helpers/zod/admin/product-schema";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
 const page = () => {
   return (
@@ -20,12 +18,7 @@ const page = () => {
       </Button>
 
       <section className="w-full max-w-2xl">
-        <ProductForm
-          onSubmit={() => {
-            console.log("submitted");
-          }}
-          schema={productSchema}
-        />
+        <ProductForm />
       </section>
     </>
   );

@@ -19,7 +19,7 @@ const Sidebar = ({ session }: { session: Session }) => {
           <Link href={'/'} className="text-[#6D54B5] font-bold text-xl">Scifi</Link>
         </div>
         <div className="mt-10 flex flex-col gap-5">
-          {adminSidebarLinks.map((link, index) => {
+          {adminSidebarLinks.map((link) => {
             const isSelected =
               (link.route !== "/admin" &&
                 pathname.includes(link.route) &&

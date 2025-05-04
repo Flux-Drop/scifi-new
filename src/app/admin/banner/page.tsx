@@ -28,7 +28,7 @@ const page = async () => {
         </div>
       </section>
     );
-  } catch (error:any) {
+  } catch {
     return (
       <section className="w-full rounded-2xl bg-white p-7">
         <div className="flex items-start justify-between gap-2">
@@ -36,7 +36,7 @@ const page = async () => {
         </div>
 
         <div className="mt-7 w-full overflow-hidden">
-          <p>Error loading banners: {error.message}</p>
+          <p>Error loading banners</p>
         </div>
       </section>
     );

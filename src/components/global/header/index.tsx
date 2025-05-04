@@ -20,7 +20,6 @@ import {
 import { useUser } from "@/contexts/UserDataContext";
 import Image from "next/image";
 import { toast } from "sonner";
-import { useState } from "react";
 
 const Header = ({ session }: { session: Session }) => {
   const { isMobile, isTablet } = useUi();
@@ -30,22 +29,7 @@ const Header = ({ session }: { session: Session }) => {
     signOutUser();
     toast.success("Sign out successful");
   };
-  const navItems = [
-    {
-      name: "Features",
-      link: "#features",
-    },
-    {
-      name: "Pricing",
-      link: "#pricing",
-    },
-    {
-      name: "Contact",
-      link: "#contact",
-    },
-  ];
  
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
   <header className="my-10 flex justify-between gap-5 items-center px-6 bg-white/5 backdrop-blur-lg border-1 border-white/15 py-2.5 rounded-full">
     <Link href="/" className="text-white font-bold capitalize text-xl ">
@@ -64,7 +48,7 @@ const Header = ({ session }: { session: Session }) => {
               {/* {getInitials(session?.user?.name || "IN")} */}
               <Image
                 src={"/assets/profiles/1.png"}
-                alt={session?.user?.name!}
+                alt={session?.user?.name ?? "User Profile Image"}
                 width={40}
                 height={40}
               />

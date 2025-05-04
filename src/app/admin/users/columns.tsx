@@ -11,7 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useUser } from "@/contexts/UserDataContext";
 import { ColumnDef } from "@tanstack/react-table";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -46,11 +45,14 @@ export const columns: ColumnDef<User>[] = [
       if (!fullName) return null;
       return (
         <div className="flex items-center gap-2">
-          <img
-            src={"/assets/profiles/1.png"}
-            alt={fullName as string}
-            className="object-cover rounded-full h-10 w-10"
-          />
+          <Image
+   src={"/assets/profiles/1.png"}
+  alt={fullName as string}
+  width={40}
+  height={40}
+  className="object-cover rounded-full"
+  style={{ width: "40px", height: "40px" }} // Optional: enforce layout
+/>
           <div className="flex flex-col items-start">
             <p className="font-semibold text-base">{fullName as ReactNode}</p>
             <p className="font-light text-gray-500">{email as ReactNode}</p>
@@ -127,7 +129,7 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "actions",
     header: () => <div className="text-left">Action</div>,
-    cell: ({ row }) => {
+    cell: () => {
       return (
         <Trash2
           size={20}

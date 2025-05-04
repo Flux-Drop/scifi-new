@@ -1,20 +1,12 @@
 import Text from "@/components/ui/text";
 import {
-  BotIcon,
-  Check,
   Clapperboard,
-  GitBranchPlus,
-  Globe2Icon,
   HandHeart,
-  Handshake,
   Headset,
   HeartHandshake,
-  Phone,
   Rocket,
-  Tv,
-  Wallet,
+  Wallet
 } from "lucide-react";
-import React from "react";
 
 const AboutCards = () => {
   const whyUsCards = [
@@ -67,7 +59,7 @@ const AboutCards = () => {
       </div>
       {/* Grid */}
       <div className="grid justify-center gap-4 sm:grid-cols-2 md:max-w-screen md:grid-cols-3 mt-10">
-        {whyUsCards.map((card, index) => (
+        {whyUsCards.map((card) => (
           <div
           className="relative group"
           key={card.title}

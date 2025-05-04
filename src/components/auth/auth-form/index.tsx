@@ -5,20 +5,19 @@ import {
   Form,
   FormControl,
   FormField,
-  FormItem,
-  FormLabel,
+  FormItem
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { FIELD_PLACEHOLDERS, FIELD_TYPES } from "@/lib/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Path } from "better-auth";
-import { Loader2, X } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   DefaultValues,
   FieldValues,
+  Path,
   SubmitHandler,
   UseFormReturn,
   useForm,
@@ -79,7 +78,7 @@ const AuthForm = <T extends FieldValues>({
             <FormField
               key={field}
               control={form.control}
-              name={field as any}
+              name={field as Path<T>}
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -100,7 +99,7 @@ const AuthForm = <T extends FieldValues>({
             />
           ))}
 
-          <div className="flex items-center space-x-2">
+          {!isSignIn && <div className="flex items-center space-x-2">
             <Checkbox id="terms" className="cursor-pointer" />
             <label
               htmlFor="terms"
@@ -112,6 +111,7 @@ const AuthForm = <T extends FieldValues>({
               </Link>
             </label>
           </div>
+}
 
           <Button
             type="submit"

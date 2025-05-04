@@ -1,12 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { navLinks } from "@/lib/constants";
-import { NavLink } from "@/types/types";
-import { LogInIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useMemo } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 const DesktopMenu = () => {
   const pathname = usePathname();

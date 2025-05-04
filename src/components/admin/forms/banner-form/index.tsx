@@ -51,7 +51,7 @@ const BannerForm = ({ type = "create", banner, id }: BannerFormProps) => {
           router.push("/admin/banner");
         }
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         toast.error("An error occurred while creating the Banner");
         console.log(error);
       });
@@ -67,7 +67,7 @@ const BannerForm = ({ type = "create", banner, id }: BannerFormProps) => {
             router.push("/admin/banner");
           }
         })
-        .catch((error: any) => {
+        .catch((error: unknown) => {
           toast.error("An error occurred while creating the Banner");
           console.log(error);
         });

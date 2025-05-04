@@ -1,9 +1,6 @@
-import { ShinyButton } from "@/components/magicui/shiny-button";
 import { Button } from "@/components/ui/button";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
 const BentoGrid = () => {
   return (
@@ -46,7 +43,7 @@ const BentoGrid = () => {
                   IPTV/OTT
                 </p>
                 <p className="mt-2 max-w-lg text-accent  max-lg:text-center">
-                  Transform your TV viewing experience with Scify's IPTV and OTT
+                  Transform your TV viewing experience with Scify&apos;s IPTV and OTT
                   services.
                 </p>
               </div>
@@ -100,14 +97,13 @@ const BentoGrid = () => {
                   Get to know more about our services and how we can help you
                   with your internet needs.
                 </p>
-                <HoverBorderGradient
-                  containerClassName="rounded-full"
-                  as="button"
-                  className="bg-black text-white flex items-center space-x-2"
+                <Button
+            
+                  className="bg-black text-white flex items-center space-x-2 rounded-full"
                 >
                   <span>Explore</span>
                   <ArrowRight size={16} />
-                </HoverBorderGradient>
+                </Button>
               </div>
               <div className="h-full w-full">
                 <video

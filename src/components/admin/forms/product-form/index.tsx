@@ -14,17 +14,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { productSchema } from "@/helpers/zod/admin/product-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-interface ProductFormProps extends Partial<Product> {
-  type?: "create" | "update";
-}
 
-const ProductForm = ({ type, ...product }: ProductFormProps) => {
+const ProductForm = ({}) => {
   const router = useRouter();
   const form = useForm<z.infer<typeof productSchema>>({
     resolver: zodResolver(productSchema),
@@ -46,7 +42,7 @@ const ProductForm = ({ type, ...product }: ProductFormProps) => {
           router.push("/admin/products");
         }
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         toast.error("An error occurred while creating the Product");
         console.log(error);
       });

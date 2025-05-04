@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Trash2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -45,11 +46,14 @@ export const columns: ColumnDef<Banner>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-2">
-           <img
+           <Image
             src={row.original.imageUrl}
             alt={row.original.title as string}
-            className="w-10 h-10 object-cover rounded-lg"
-          />
+            width={40}
+            height={40}
+            className="object-cover rounded-lg"
+            style={{ width: "40px", height: "40px" }} // Optional: enforce layout
+            />
         </div>
       );
     },

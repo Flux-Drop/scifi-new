@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 import { Trash2 } from "lucide-react";
-import { ReactNode } from "react";
 
 export type Plans = {
   firstName: string;
@@ -25,28 +24,6 @@ export type Plans = {
 type Role = "ADMIN" | "USER";
 
 export const columns: ColumnDef<Plans>[] = [
-  {
-    accessorKey: "title",
-    header: () => <div className="text-left">Name</div>,
-    cell: ({ row }) => {
-      const fullName = row.original.firstName + " " + row.original.lastName;
-      const email = row.original.email;
-      if (!fullName) return null;
-      return (
-        <div className="flex items-center gap-2">
-          <img
-            src={"/assets/profiles/1.png"}
-            alt={fullName as string}
-            className="w-10 h-10 object-cover rounded-full"
-          />
-          <div className="flex flex-col items-start">
-            <p className="font-semibold text-base">{fullName as ReactNode}</p>
-            <p className="font-light text-gray-500">{email as ReactNode}</p>
-          </div>
-        </div>
-      );
-    },
-  },
   {
     accessorKey: "created_at",
     header: () => <div className="text-left">Date Joined</div>,
@@ -109,7 +86,7 @@ export const columns: ColumnDef<Plans>[] = [
   {
     accessorKey: "actions",
     header: () => <div className="text-left">Action</div>,
-    cell: ({ row }) => {
+    cell: () => {
       return (
         <Trash2
           size={20}

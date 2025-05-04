@@ -1,9 +1,6 @@
-import { Button } from '@/components/ui/button'
-import React from 'react'
-import BannerListCard from './banner-list-card'
 import { getActiveBanners } from '@/actions/banner'
-import Link from 'next/link'
 import AdminCardsHeader from '../admin-cards-header'
+import BannerListCard from './banner-list-card'
 
 const ActiveBannersCard = async () => {
     const {data: activeBanners} = await getActiveBanners();

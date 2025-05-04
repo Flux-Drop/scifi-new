@@ -12,7 +12,7 @@ const Testimonails = () => {
         </span> */}
         <Text>What Our Clients Say </Text>
         <p className="text-lg text-start lg:text-center text-slate-200">
-          Our best clients are the ones who have worked with us before. Here's
+          Our best clients are the ones who have worked with us before. Here&apos;s
           what they have to say about us.
         </p>
       </div>

@@ -1,6 +1,4 @@
 import { ShinyButton } from '@/components/magicui/shiny-button';
-import { Button } from '@/components/ui/button'
-import React from 'react'
 
 interface IPlanTypeProps {
     selectedMonths: number;

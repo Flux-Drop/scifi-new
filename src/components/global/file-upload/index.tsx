@@ -20,15 +20,15 @@ const FileUpload: React.FC<FileUploadProps> = ({
   accept,
   folder,
   onFileChange,
-  placeholder,
+  // placeholder,
   type,
   value,
 }) => {
   const {
     env: {
-      imageKit: { publicKey, privateKey, urlEndpoint },
+      imageKit: { publicKey, urlEndpoint },
       apiEndpointDev,
-      apiEndpointProd,
+      // apiEndpointProd,
     },
   } = config;
 
@@ -57,17 +57,17 @@ const FileUpload: React.FC<FileUploadProps> = ({
         expire,
         signature,
       };
-    } catch (error: any) {
-      throw new Error(`Authentication request failed: ${error.message}`);
+    } catch (error: unknown) {
+      throw new Error(`Authentication request failed ${error}`);
     }
   };
-  const onError = (error: any) => {
+  const onError = (error: unknown) => {
     console.log(error);
 
     toast.error(`${type} upload failed`);
   };
 
-  const onSuccess = (res: any) => {
+  const onSuccess = (res:{ url: string; filePath: string }) => {
     setFile(res);
     onFileChange(res.url);
     toast.success(`${type} uploaded successfully`);
@@ -120,7 +120,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
         onClick={(e) => {
           e.preventDefault();
           if (ikUploadRef.current) {
-            // @ts-ignore
+            // @ts-expect-error ImageKit upload ref lacks type declaration for .click()
             ikUploadRef.current?.click();
           }
         }}

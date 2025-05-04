@@ -1,10 +1,6 @@
 import { ShinyButton } from "@/components/magicui/shiny-button";
-import { Button } from "@/components/ui/button";
 import Text from "@/components/ui/text";
 import Image from "next/image";
-import React from "react";
-import GradientButton from "../buttons/GradientButton";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const Hero = () => {
   return (

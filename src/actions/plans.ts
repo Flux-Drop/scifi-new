@@ -1,6 +1,5 @@
 "use server";
-import prisma from "../db"; 
-import { PlanParams } from "@/types/types"; 
+import prisma from "../db";
 
 
 export const getPlans = async () => {
@@ -63,7 +62,7 @@ export const getPlans = async () => {
     } catch (error) {
         return {
             success: false,
-            message: "An error occurred while creating the plan",
+            message: "An error occurred while creating the plan" + error,
           };
     }
   }

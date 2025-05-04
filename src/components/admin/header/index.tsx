@@ -1,7 +1,4 @@
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { Session } from "next-auth";
-import React from "react";
 
 const Header = ({ session }: { session: Session }) => {
   return (

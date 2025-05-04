@@ -89,7 +89,7 @@ const FAQSection: React.FC = () => {
                 <p className="text-white max-w-[65%] font-medium">
                   Please note that the FAQs provided here are for general
                   information purposes. For specific inquiries or assistance,
-                  please contact Scify's customer service team.
+                  please contact Scify&#39;s customer service team.
                 </p>
 
                 <Button className="bg-[url('/assets/cta.png')] bg-cover rounded-full font-semibold h-12 w-40 flex items-center justify-center ml-4">

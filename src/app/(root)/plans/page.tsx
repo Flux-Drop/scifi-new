@@ -1,12 +1,10 @@
 "use client";
 
+import PlanCard from "@/components/global/plan-card";
 import { Button } from "@/components/ui/button";
-import Text from "@/components/ui/text";
-import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import PlanCard from "@/components/global/plan-card";
+import { useState } from "react";
 
 const Plans = () => {
   const [selectedMonths, setSelectedMonths] = useState<number>(1);

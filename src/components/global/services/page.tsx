@@ -103,7 +103,6 @@ const ServiceCard = ({ title, copy, index }: ServiceCardProps) => {
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
-  const translateY = useTransform(scrollYProgress, [0, 1], [50, 0]);
 
   return (
 

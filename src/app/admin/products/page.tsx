@@ -1,9 +1,8 @@
+import { getProducts } from "@/actions/product";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React from "react";
-import { columns, Product } from "./columns";
+import { columns } from "./columns";
 import { DataTable } from "./data-table";
-import { getProducts } from "@/actions/product";
 
 const page = async () => {
   const { data } = await getProducts();

@@ -28,7 +28,6 @@ const Contact = () => {
     },
   });
 
-  const [loading, setLoading] = useState<boolean>(false);
   const [addressLoading, setAddressLoading] = useState<boolean>(false);
 
   const handleGeolocation = async () => {
@@ -102,7 +101,7 @@ const Contact = () => {
                     <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
-                        disabled={loading}
+                        // disabled={loading}
                         type="text"
                         placeholder="Enter your name"
                         {...field}
@@ -120,7 +119,7 @@ const Contact = () => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
-                        disabled={loading}
+                        // disabled={loading}
                         type="email"
                         placeholder="youremail@example.com"
                         {...field}
@@ -138,7 +137,7 @@ const Contact = () => {
                     <FormLabel>Phone</FormLabel>
                     <FormControl>
                       <Input
-                        disabled={loading}
+                        // disabled={loading}
                         type="tel"
                         placeholder="Enter your phone number"
                         {...field}
@@ -159,7 +158,7 @@ const Contact = () => {
                       <FormLabel>PIN Code</FormLabel>
                       <FormControl>
                         <Input
-                          disabled={loading}
+                          // disabled={loading}
                           placeholder="Enter PIN code"
                           {...field}
                         />
@@ -189,7 +188,7 @@ const Contact = () => {
                     <FormLabel>Installation Address</FormLabel>
                     <FormControl>
                       <Input
-                        disabled={loading}
+                        // disabled={loading}
                         placeholder="Start typing your address"
                         {...field}
                       />
@@ -207,7 +206,7 @@ const Contact = () => {
                     <FormControl>
                       <textarea
                         className="w-full p-2 border rounded-md"
-                        disabled={loading}
+                        // disabled={loading}
                         {...field}
                       />
                     </FormControl>
@@ -216,7 +215,7 @@ const Contact = () => {
                 )}
               />
               <Button
-                disabled={loading}
+                // disabled={loading}
                 type="submit"
                 className="w-full cursor-pointer"
               >

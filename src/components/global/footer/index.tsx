@@ -1,23 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import {
-  Facebook,
-  XIcon,
-  Instagram,
-  Youtube,
   ArrowRight,
+  Facebook,
+  Instagram,
   Mail,
   MapPin,
   Phone,
   Twitter,
-  X,
+  XIcon,
+  Youtube
 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { ShinyButton } from "@/components/magicui/shiny-button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const socialIcons = [
   { href: "#", icon: Facebook },

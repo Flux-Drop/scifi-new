@@ -78,7 +78,7 @@ export default function AboutUs() {
           </p>
           <p className="text-lg md:text-xl text-neutral-300 leading-relaxed mt-4">
             At Scify, we understand the importance of reliable internet connectivity and the peace of mind that comes
-            with a secure home. That's why we strive to deliver innovative solutions at affordable price that not only
+            with a secure home. That&rsquo;s why we strive to deliver innovative solutions at affordable price that not only
             enhance the way you live but also empower you to stay connected and protected at all times.
           </p>
         </div>
@@ -105,11 +105,11 @@ export default function AboutUs() {
             transition={{ duration: 0.3 }}
           >
             <div className="absolute -top-6 left-10 w-12 h-12 rounded-full bg-gradient-to-r from-[#904EF6] to-[#3F80F6] flex items-center justify-center">
-              <span className="text-white text-2xl font-bold">"</span>
+              <span className="text-white text-2xl font-bold">&quot;</span>
             </div>
             <p className="text-lg md:text-xl text-neutral-300 italic mb-6 leading-relaxed">
-            "At Scify, we are committed to democratizing technology, making it affordable and accessible to all. Our vision
-            is to empower the masses by ensuring that cutting-edge technology is within reach of every individual.""
+            &quot;At Scify, we are committed to democratizing technology, making it affordable and accessible to all. Our vision
+            is to empower the masses by ensuring that cutting-edge technology is within reach of every individual.&quot;
           </p>
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold text-white">Vikram Kumar</h3>
